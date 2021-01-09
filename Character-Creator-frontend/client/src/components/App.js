@@ -1,15 +1,19 @@
 import React from "react";
 import MenuComponent from './MenuComponent';
+import ProficienciesList from './OtherStats/ProficienciesList';
 
 class App extends React.Component {
 
     render() {
         return (
-            
-            <div className="ui container">
+            <div>
                 <MenuComponent />
-                App
+                <div className="ui container">
+                   <ProficienciesList />
+                </div>
+                
             </div>
+            
         );
     }
 }
