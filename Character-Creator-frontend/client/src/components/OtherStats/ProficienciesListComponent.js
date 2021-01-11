@@ -37,18 +37,7 @@ class ProficienciesListComponent extends Component {
                             </tr>
                         )
                     }
-                    <tr>
-                        <td data-label="Name">James</td>
-                        <td data-label="Type">24</td>
-                    </tr>
-                    <tr>
-                        <td data-label="Name">Jill</td>
-                        <td data-label="Type">26</td>
-                    </tr>
-                    <tr>
-                        <td data-label="Name">Elyse</td>
-                        <td data-label="Type">24</td>
-                    </tr>
+                    
                 </tbody>
             </table>
             </div>

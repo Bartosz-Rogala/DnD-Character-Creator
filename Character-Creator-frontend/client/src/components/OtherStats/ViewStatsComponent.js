@@ -4,12 +4,41 @@ import { Link } from 'react-router-dom';
 class ViewStatsComponent extends Component {
     render() {
         return (
+            
             <div>
                 <h2 class="ui center aligned icon header">
                     <i class="circular chart bar icon"></i>
                     View all stats
                 </h2>
             <div class="ui three column stackable grid">
+                <div class="column">
+                    <div class="ui raised segment">
+                        <Link to="/view_stats/character_classes">
+                            View Character Classes
+                        </Link>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="ui raised segment">
+                        <Link to="/view_stats/character_races">
+                            View Character Races
+                        </Link>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="ui raised segment">
+                        <Link to="/view_stats/character_subraces">
+                            View Character Subraces
+                        </Link>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="ui raised segment">
+                        <Link to="/view_stats/character_backgrounds">
+                            View Character Backgrounds
+                        </Link>
+                    </div>
+                </div>
                 <div class="column">
                     <div class="ui raised segment">
                         <Link to="/view_stats/proficiencies">
@@ -19,18 +48,44 @@ class ViewStatsComponent extends Component {
                 </div>
                 <div class="column">
                     <div class="ui raised segment">
-                        Hi
+                        <Link to="/view_stats/personality_traits">
+                            View Personality Traits
+                        </Link>
                     </div>
                 </div>
                 <div class="column">
                     <div class="ui raised segment">
-                        How are ya
+                        <Link to="/view_stats/languages">
+                            View Language
+                        </Link>
                     </div>
                 </div>
-
                 <div class="column">
                     <div class="ui raised segment">
-                        How aasda
+                        <Link to="/view_stats/ideals">
+                            View Ideals
+                        </Link>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="ui raised segment">
+                        <Link to="/view_stats/flaws">
+                            View Flaws
+                        </Link>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="ui raised segment">
+                        <Link to="/view_stats/equipment">
+                            View Equipment
+                        </Link>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="ui raised segment">
+                        <Link to="/view_stats/bonds">
+                            View Bonds
+                        </Link>
                     </div>
                 </div>
             </div>
