@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import OtherStatsService from '../../services/OtherStatsService';
 
-class ProficienciesList extends Component {
+class ProficienciesListComponent extends Component {
     constructor(props) {
         super(props)
 
@@ -18,6 +18,8 @@ class ProficienciesList extends Component {
 
     render () {
         return (
+            <div>
+                <h2 class="ui center aligned header">Proficiencies</h2>
             <table class="ui celled table">
                 <thead>
                     <tr>
@@ -49,8 +51,9 @@ class ProficienciesList extends Component {
                     </tr>
                 </tbody>
             </table>
+            </div>
         );
     }
 }
 
-export default ProficienciesList;
+export default ProficienciesListComponent;

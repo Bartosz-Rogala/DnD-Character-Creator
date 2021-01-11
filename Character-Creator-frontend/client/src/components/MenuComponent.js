@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class MenuComponent extends Component {
     constructor(props) {
@@ -12,15 +13,15 @@ class MenuComponent extends Component {
     render() {
         return (
             <div class="ui pointing menu">
-                <a class="active item">
+                <Link to="/" class="item">
                     DnD Character Creator
-                </a>
-                <a class="item">
+                </Link>
+                <Link to="/" class="item">
                     Create Character
-                </a>
-                <a class="item">
-                    View items
-                </a>
+                </Link>
+                <Link to="/view_stats" class="item">
+                    View all stats
+                </Link>
             </div>
 
         );
