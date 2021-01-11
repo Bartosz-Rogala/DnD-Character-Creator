@@ -1,5 +1,9 @@
 import React from "react";
 import MenuComponent from './MenuComponent';
+import MainPageComponent from './MainPageComponent';
+import LearnMoreComponent from './LearnMoreComponent';
+import CreateCharacterComponent from './CreateCharacterComponent';
+
 import ProficienciesListComponent from './OtherStats/ProficienciesListComponent';
 import PersonalityTraitsListComponent from './OtherStats/PersonalityTraitsListComponent';
 import LanguagesListComponent from './OtherStats/LanguagesListComponent';
@@ -25,7 +29,10 @@ class App extends React.Component {
                     <MenuComponent />
                     <div className="ui container">
                         <Switch>
-                            <Route path="/" exact component={MenuComponent}></Route>
+                            <Route path="/" exact component={MainPageComponent}></Route>
+
+                            <Route path="/create_character" exact component={CreateCharacterComponent}></Route>
+                            <Route path="/learn_more" exact component={LearnMoreComponent}></Route>
 
                             <Route path="/view_stats" exact component={ViewStatsComponent}></Route>
                             <Route path="/view_stats/proficiencies" exact component={ProficienciesListComponent}></Route>

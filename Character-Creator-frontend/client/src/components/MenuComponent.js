@@ -12,14 +12,14 @@ class MenuComponent extends Component {
 
     render() {
         return (
-            <div class="ui pointing menu">
-                <Link to="/" class="item">
+            <div style={{marginBottom: "50px"}} className="ui pointing menu">
+                <Link to="/" className="item">
                     DnD Character Creator
                 </Link>
-                <Link to="/" class="item">
+                <Link to="/create_character" className="item">
                     Create Character
                 </Link>
-                <Link to="/view_stats" class="item">
+                <Link to="/view_stats" className="item">
                     View all stats
                 </Link>
             </div>

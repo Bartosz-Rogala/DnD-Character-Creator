@@ -19,8 +19,8 @@ class ProficienciesListComponent extends Component {
     render () {
         return (
             <div>
-                <h2 class="ui center aligned header">Proficiencies</h2>
-            <table class="ui celled table">
+                <h2 className="ui center aligned header">Proficiencies</h2>
+            <table className="ui celled table">
                 <thead>
                     <tr>
                         <th>Name</th>
