@@ -3,6 +3,7 @@ import axios from 'axios';
 const OTHER_API_BASE_URL = "http://localhost:8080/api/v1";
 
 class OtherStatsService {
+    //standard get methods
     getProficiencies() {
         return axios.get(OTHER_API_BASE_URL + "/proficiencies");
     }
@@ -31,6 +32,10 @@ class OtherStatsService {
         return axios.get(OTHER_API_BASE_URL + "/bonds");
     }
 
+    getAlignments() {
+        return axios.get(OTHER_API_BASE_URL + "/alignments");
+    }
+
     getCharacterRaces() {
         return axios.get(OTHER_API_BASE_URL + "/character_races");
     }
@@ -47,6 +52,14 @@ class OtherStatsService {
         return axios.get(OTHER_API_BASE_URL + "/character_backgrounds");
     }
 
+    //get subraces of proper races
+    getSubracesofRace(raceId) {
+        return axios.get(OTHER_API_BASE_URL + "/character_subraces/race", {
+            params: {
+                raceId: `${raceId}`
+            }
+        });
+    }
 }
 
 export default new OtherStatsService();

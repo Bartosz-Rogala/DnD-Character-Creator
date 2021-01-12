@@ -5,12 +5,10 @@ import character.creator.model.*;
 import character.creator.repository.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin
 @RestController
@@ -49,6 +47,9 @@ public class CharacterCreatorController {
 
     @Autowired
     private BondRepository bondRepository;
+
+    @Autowired
+    private AlignmentRepository alignmentRepository;
 
 
 //    get all proficiencies
@@ -100,7 +101,10 @@ public class CharacterCreatorController {
     }
 
 //    get subraces of proper races
-    
+    @GetMapping("/character_subraces/race")
+    public List<CharacterSubrace> getCharacterSubracesByRace(@RequestParam Long raceId) {
+        return (List<CharacterSubrace>) characterSubraceRepository.findByParentRaceId(raceId);
+    }
 
 //    get all character classes
     @GetMapping("/character_classes")
@@ -118,5 +122,12 @@ public class CharacterCreatorController {
     @GetMapping("/bonds")
     public List<Bond> getAllBonds() {
         return (List<Bond>) bondRepository.findAll();
+    }
+
+
+    //    get all alignments
+    @GetMapping("/alignments")
+    public List<Alignment> getAllAlignments() {
+        return (List<Alignment>) alignmentRepository.findAll();
     }
 }
