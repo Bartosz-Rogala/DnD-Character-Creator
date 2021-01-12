@@ -99,6 +99,9 @@ public class CharacterCreatorController {
         return (List<CharacterSubrace>) characterSubraceRepository.findAll();
     }
 
+//    get subraces of proper races
+    
+
 //    get all character classes
     @GetMapping("/character_classes")
     public List<CharacterClass> getAllCharacterClasses() {

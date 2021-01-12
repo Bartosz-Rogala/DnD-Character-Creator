@@ -2,7 +2,7 @@ import React from "react";
 import MenuComponent from './MenuComponent';
 import MainPageComponent from './MainPageComponent';
 import LearnMoreComponent from './LearnMoreComponent';
-import CreateCharacterComponent from './CreateCharacterComponent';
+import CreateCharacterComponent from './CreateCharacterWizzard/CreateCharacterComponent';
 
 import ProficienciesListComponent from './OtherStats/ProficienciesListComponent';
 import PersonalityTraitsListComponent from './OtherStats/PersonalityTraitsListComponent';
