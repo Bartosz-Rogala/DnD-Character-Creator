@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { Link } from 'react-router-dom';
 import validate from './validate';
 import renderField from './renderField';
 import OtherStatsService from '../../services/OtherStatsService';
@@ -94,7 +95,12 @@ const CreateCharacterFirstPage = props => {
             <Field optionList={characterBackgrounds} selectedOption={selectedBackground} change={setselectedBackground} name="background" component={renderSelector} label="Choose a background" />
             <Field optionList={alignments} selectedOption={selectedAlignment} change={setselectedAlignment} name="alignment" component={renderSelector} label="Choose an alignment" />
 
-            <button className="ui button primary">Submit</button>
+            <button className="ui button positive">Next</button>
+            <Link to="/">
+                <button style={{marginLeft: "10px"}} className="ui secondary button">
+                    Back
+                </button>
+            </Link>
         </form>
     );
 }
