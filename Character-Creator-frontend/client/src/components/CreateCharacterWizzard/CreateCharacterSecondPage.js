@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import validate from './validate';
 const numberArray =[15,14,13,12,10,8];
@@ -12,9 +12,6 @@ const CreateCharacterSecondPage = props => {
     const [selectedCharisma, setSelectedCharisma] = useState(0);
     const { handleSubmit } = props
 
-    useEffect(() => {
-        console.log(selectedStrength);
-    });
 
     const renderSelector = ({ selectedOption, change, label, meta: {touched, error} }) => (
         <div className="field">
@@ -45,13 +42,22 @@ const CreateCharacterSecondPage = props => {
         </div>
     )
 
+
+    const AbilityModifier = ({ability}) => {
+        if (ability === 0) {
+            return '';
+        } else {
+            return Math.round((ability-10.5)/2);
+        }
+    }
+
     return (
         <form onSubmit={handleSubmit} className="ui form error">
             <div className="ui mini form">
                 <div className="two fields">
-                    <div className="two wide field">
+                    <div className="three wide field">
                         <label>Strength modifier</label>
-                        <div>{selectedStrength}</div>
+                        <div><AbilityModifier ability={selectedStrength} /></div>
                     </div>
                     <div className="four wide field">
                         <Field name="strength" selectedOption={selectedStrength} change={setSelectedStrength} component={renderSelector} label="Strength" />
@@ -61,9 +67,9 @@ const CreateCharacterSecondPage = props => {
 
             <div className="ui mini form">
                 <div className="two fields">
-                    <div className="two wide field">
+                    <div className="three wide field">
                         <label>Dexterity modifier</label>
-                        <div>Hello</div>
+                        <div><AbilityModifier ability={selectedDexterity} /></div>
                     </div>
                     <div className="four wide field">
                         <Field name="dexterity" selectedOption={selectedDexterity} change={setSelectedDexterity} component={renderSelector} label="Dexterity" />
@@ -73,9 +79,9 @@ const CreateCharacterSecondPage = props => {
 
             <div className="ui mini form">
                 <div className="two fields">
-                    <div className="two wide field">
+                    <div className="three wide field">
                         <label>Constitution modifier</label>
-                        <div>Hello</div>
+                        <div><AbilityModifier ability={selectedConstitution} /></div>
                     </div>
                     <div className="four wide field">
                         <Field name="constitution" selectedOption={selectedConstitution} change={setSelectedConstitution} component={renderSelector} label="Constitution" />
@@ -85,9 +91,9 @@ const CreateCharacterSecondPage = props => {
 
             <div className="ui mini form">
                 <div className="two fields">
-                    <div className="two wide field">
+                    <div className="three wide field">
                         <label>Intelligence modifier</label>
-                        <div>Hello</div>
+                        <div><AbilityModifier ability={selectedIntelligence} /></div>
                     </div>
                     <div className="four wide field">
                         <Field name="intelligence" selectedOption={selectedIntelligence} change={setSelectedIntelligence} component={renderSelector} label="Intelligence" />
@@ -97,9 +103,9 @@ const CreateCharacterSecondPage = props => {
 
             <div className="ui mini form">
                 <div className="two fields">
-                    <div className="two wide field">
+                    <div className="three wide field">
                         <label>Wisdom modifier</label>
-                        <div>Hello</div>
+                        <div><AbilityModifier ability={selectedWisdom} /></div>
                     </div>
                     <div className="four wide field">
                         <Field name="wisdom" selectedOption={selectedWisdom} change={setSelectedWisdom} component={renderSelector} label="Wisdom" />
@@ -109,9 +115,9 @@ const CreateCharacterSecondPage = props => {
 
             <div className="ui mini form">
                 <div className="two fields">
-                    <div className="two wide field">
+                    <div className="three wide field">
                         <label>Charisma modifier</label>
-                        <div>Hello</div>
+                        <div><AbilityModifier ability={selectedCharisma} /></div>
                     </div>
                     <div className="four wide field">
                         <Field name="charisma" selectedOption={selectedCharisma} change={setSelectedCharisma} component={renderSelector} label="Charisma" />
