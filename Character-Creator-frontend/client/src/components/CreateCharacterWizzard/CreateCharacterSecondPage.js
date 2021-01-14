@@ -10,15 +10,16 @@ const CreateCharacterSecondPage = props => {
     const [selectedIntelligence, setSelectedIntelligence] = useState(0);
     const [selectedWisdom, setSelectedWisdom] = useState(0);
     const [selectedCharisma, setSelectedCharisma] = useState(0);
-    const { handleSubmit } = props
+    const { handleSubmit, previousPage } = props
 
 
-    const renderSelector = ({ selectedOption, change, label, meta: {touched, error} }) => (
+    const renderSelector = ({ input, selectedOption, label, meta: {touched, error} }) => (
         <div className="field">
             
             <label>{label}</label>
             {touched && error && <span>{error}</span>}
-            <select value={selectedOption} onChange={e => change(parseInt(e.currentTarget.value))}>
+            <select {...input} >
+            
             <option>-</option>
             {numberArray.filter((chosen) => {
                     return ((
@@ -60,7 +61,7 @@ const CreateCharacterSecondPage = props => {
                         <div><AbilityModifier ability={selectedStrength} /></div>
                     </div>
                     <div className="four wide field">
-                        <Field name="strength" selectedOption={selectedStrength} change={setSelectedStrength} component={renderSelector} label="Strength" />
+                        <Field name="strength" selectedOption={selectedStrength} onChange={e => setSelectedStrength(parseInt(e.currentTarget.value))} component={renderSelector} label="Strength" />
                     </div>
                 </div>
             </div>
@@ -72,7 +73,7 @@ const CreateCharacterSecondPage = props => {
                         <div><AbilityModifier ability={selectedDexterity} /></div>
                     </div>
                     <div className="four wide field">
-                        <Field name="dexterity" selectedOption={selectedDexterity} change={setSelectedDexterity} component={renderSelector} label="Dexterity" />
+                        <Field name="dexterity" selectedOption={selectedDexterity} onChange={e => setSelectedDexterity(parseInt(e.currentTarget.value))} component={renderSelector} label="Dexterity" />
                     </div>
                 </div>
             </div>
@@ -84,7 +85,7 @@ const CreateCharacterSecondPage = props => {
                         <div><AbilityModifier ability={selectedConstitution} /></div>
                     </div>
                     <div className="four wide field">
-                        <Field name="constitution" selectedOption={selectedConstitution} change={setSelectedConstitution} component={renderSelector} label="Constitution" />
+                        <Field name="constitution" selectedOption={selectedConstitution} onChange={e => setSelectedConstitution(parseInt(e.currentTarget.value))} component={renderSelector} label="Constitution" />
                     </div>
                 </div>
             </div>
@@ -96,7 +97,7 @@ const CreateCharacterSecondPage = props => {
                         <div><AbilityModifier ability={selectedIntelligence} /></div>
                     </div>
                     <div className="four wide field">
-                        <Field name="intelligence" selectedOption={selectedIntelligence} change={setSelectedIntelligence} component={renderSelector} label="Intelligence" />
+                        <Field name="intelligence" selectedOption={selectedIntelligence} onChange={e => setSelectedIntelligence(parseInt(e.currentTarget.value))} component={renderSelector} label="Intelligence" />
                     </div>
                 </div>
             </div>
@@ -108,7 +109,7 @@ const CreateCharacterSecondPage = props => {
                         <div><AbilityModifier ability={selectedWisdom} /></div>
                     </div>
                     <div className="four wide field">
-                        <Field name="wisdom" selectedOption={selectedWisdom} change={setSelectedWisdom} component={renderSelector} label="Wisdom" />
+                        <Field name="wisdom" selectedOption={selectedWisdom} onChange={e => setSelectedWisdom(parseInt(e.currentTarget.value))} component={renderSelector} label="Wisdom" />
                     </div>
                 </div>
             </div>
@@ -120,12 +121,18 @@ const CreateCharacterSecondPage = props => {
                         <div><AbilityModifier ability={selectedCharisma} /></div>
                     </div>
                     <div className="four wide field">
-                        <Field name="charisma" selectedOption={selectedCharisma} change={setSelectedCharisma} component={renderSelector} label="Charisma" />
+                        <Field name="charisma" selectedOption={selectedCharisma} onChange={e => setSelectedCharisma(parseInt(e.currentTarget.value))} component={renderSelector} label="Charisma" />
                     </div>
                 </div>
             </div>
 
-            <button className="ui button primary">Submit</button>
+            <button className="ui button positive">
+                Next
+            </button>
+            <button style={{marginLeft: "10px"}} type="button" className="ui button secondary" onClick={previousPage}>
+                Previous
+            </button>
+            
         </form>
     );
 }

@@ -62,6 +62,7 @@ class LearnMoreComponent extends Component {
                             <li> user account (Spring Security) </li>
                             <li> view already created characters </li>
                             <li> upgrade created characters </li>
+                            <li> upload image of a character </li>
                         </ul>
                     </div>
                 </div>

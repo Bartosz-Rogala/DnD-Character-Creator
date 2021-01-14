@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import CreateCharacterFirstPage from './CreateCharacterFirstPage';
 import CreateCharacterSecondPage from './CreateCharacterSecondPage';
 import CreateCharacterThirdPage from './CreateCharacterThirdPage';
+import CreateCharacterFourthPage from './CreateCharacterFourthPage';
 
 class CreateCharacterComponent extends Component {
     constructor(props) {
@@ -43,6 +44,12 @@ class CreateCharacterComponent extends Component {
                 )}
                 {page === 3 && (
                     <CreateCharacterThirdPage
+                        previousPage={this.previousPage}
+                        onSubmit={this.nextPage}
+                    />
+                )}
+                {page === 4 && (
+                    <CreateCharacterFourthPage
                         previousPage={this.previousPage}
                         onSubmit={this.onSubmit}
                     />
