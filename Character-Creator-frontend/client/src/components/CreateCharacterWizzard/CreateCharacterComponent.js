@@ -8,23 +8,34 @@ import CreateCharacterFourthPage from './CreateCharacterFourthPage';
 class CreateCharacterComponent extends Component {
     constructor(props) {
         super(props)
+        this.toSecondPage = this.toSecondPage.bind(this)
         this.nextPage = this.nextPage.bind(this)
         this.previousPage = this.previousPage.bind(this)
         this.state = {
-          page: 1
+          page: 1,
+          race: {},
+          subrace: {},
+          class: {},
+          background: {}
         }
 
     }
 
-    
-
     nextPage() {
-        
         this.setState({ page: this.state.page + 1 })
     }
     
     previousPage() {
         this.setState({ page: this.state.page - 1 })
+    }
+
+    toSecondPage(formValues) {
+        this.setState({ page: this.state.page + 1 })
+        this.setState({ race: JSON.parse(formValues.race) })
+        this.setState({ subrace: JSON.parse(formValues.subrace) })
+        this.setState({ class: JSON.parse(formValues.class) })
+        this.setState({ background: JSON.parse(formValues.background) })
+        
     }
 
     
@@ -65,24 +76,29 @@ class CreateCharacterComponent extends Component {
         })
     }
 
+
     render() {
         const { page } = this.state
         return (
             <div>
                 {page === 1 && 
                     <CreateCharacterFirstPage 
-                        onSubmit={this.nextPage} 
+                        onSubmit={this.toSecondPage}
                     />}
                 {page === 2 && (
                     <CreateCharacterSecondPage
                         previousPage={this.previousPage}
                         onSubmit={this.nextPage}
+                        selectedRace={this.state.race}
+                        selectedSubrace={this.state.subrace}
                     />
                 )}
                 {page === 3 && (
                     <CreateCharacterThirdPage
                         previousPage={this.previousPage}
                         onSubmit={this.nextPage}
+                        selectedClass={this.state.class}
+                        selectedBackground={this.state.background}
                     />
                 )}
                 {page === 4 && (

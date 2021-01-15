@@ -9,7 +9,7 @@ const CreateCharacterThirdPage = props => {
     const [ideals, setIdeals] = useState([]);
     const [flaws, setFlaws] = useState([]);
     const [bonds, setBonds] = useState([]);
-    const { handleSubmit, previousPage } = props;
+    const { handleSubmit, previousPage, selectedClass, selectedBackground  } = props;
 
     useEffect(() => {
         let unmounted = false;
@@ -41,8 +41,10 @@ const CreateCharacterThirdPage = props => {
                 setBonds(responseBonds.data.map((bond) => ({ id: bond.id, value: bond.bond })));
                 setLoading(false);
             }
+
         }
         getInfo();
+        
         return () => {
             unmounted = true;
         }
@@ -67,6 +69,31 @@ const CreateCharacterThirdPage = props => {
         </div>
     );
 
+    const renderEquipment = ({ input, optionClass, optionBackground, label, meta: {touched, error} }) => (
+        
+        <div className="field">
+            
+            <label>{label}</label>
+            {touched && error && <span>{error}</span>}
+            <select {...input}  multiple="" className="ui dropdown" disabled={loading}>
+            <option>---</option>
+            {optionClass.map(option => (
+                <option key={option.id} value={option.name}>
+                    {option.name}
+                </option>
+            ))}
+            {optionBackground.map(option => (
+                <option key={option.id} value={option.name}>
+                    {option.name}
+                </option>
+            ))}
+            
+            </select>
+            
+        </div>
+        
+    );
+
     return (
         <form onSubmit={handleSubmit} className="ui form error">
             <Field optionList={personalityTraits} name="personalityTrait" component={renderSelector} label="Choose personality trait" fieldName="personalityTrait" />
@@ -74,6 +101,8 @@ const CreateCharacterThirdPage = props => {
             <Field optionList={flaws} name="flaw" component={renderSelector} label="Choose flaw" fieldName="flaw" />
             <Field optionList={bonds} name="bond" component={renderSelector} label="Choose bond" fieldName="bond" />
 
+            <Field optionClass={selectedClass.equipment} optionBackground={selectedBackground.equipment} name="equipment" component={renderEquipment} label="Choose equipment" fieldName="equipment" />
+            
 
             <button className="ui button positive">
                 Next

@@ -57,6 +57,7 @@ public class CharacterCreatorController {
     private DnDCharacterRepository dnDCharacterRepository;
 
 
+
 //    get all proficiencies
     @GetMapping("/proficiencies")
     public List<Proficiency> getAllProficiencies() {
@@ -150,4 +151,5 @@ public class CharacterCreatorController {
 
         return ResponseEntity.ok(character);
     }
+
 }

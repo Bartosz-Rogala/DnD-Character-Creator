@@ -20,7 +20,6 @@ const CreateCharacterFirstPage = props => {
             const responseClass = await OtherStatsService.getCharacterClasses()
             
             if (!unmounted) {
-                // setCharacterClasses(responseClass.data.map((characterClass) => ({ id: characterClass.id, name: characterClass.className, description:  characterClass.classDescription})));
                 setCharacterClasses(responseClass.data.map((characterClass) => ({ id: characterClass.id, name: characterClass.className, description:  characterClass.classDescription, object: characterClass })));
                 
                 setLoading(false);
