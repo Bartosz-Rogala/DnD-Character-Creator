@@ -92,7 +92,7 @@ const CreateCharacterFirstPage = props => {
             <button className="ui button positive">Next</button>
             <Link to="/">
                 <button style={{marginLeft: "10px"}} className="ui secondary button">
-                    Back
+                    Cancel
                 </button>
             </Link>
         </form>

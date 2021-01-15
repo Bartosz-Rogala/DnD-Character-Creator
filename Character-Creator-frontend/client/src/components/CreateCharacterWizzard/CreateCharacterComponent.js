@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import CharacterService from '../../services/CharacterService';
 import CreateCharacterFirstPage from './CreateCharacterFirstPage';
 import CreateCharacterSecondPage from './CreateCharacterSecondPage';
 import CreateCharacterThirdPage from './CreateCharacterThirdPage';
@@ -12,9 +13,13 @@ class CreateCharacterComponent extends Component {
         this.state = {
           page: 1
         }
+
     }
 
+    
+
     nextPage() {
+        
         this.setState({ page: this.state.page + 1 })
     }
     
@@ -24,8 +29,40 @@ class CreateCharacterComponent extends Component {
 
     
 
-    onSubmit(formValues) {
-        console.log(formValues);
+    onSubmit = (formValues) => {
+
+        let character = {
+            additionalFeaturesAndTraits: formValues.additionalFeaturesAndTraits, 
+            age: formValues.age, 
+            alignment: formValues.alignment.alignment,
+            alliesAndOrganisations: formValues.alliesAndOrganisations,
+            characterBackground: JSON.parse(formValues.background),
+            bond: formValues.bond,
+            characterBackstory: formValues.characterBackstory,
+            charisma: formValues.charisma,
+            characterClass: JSON.parse(formValues.class),
+            constitution: formValues.constitution,
+            dexterity: formValues.dexterity,
+            eyes: formValues.eyes,
+            flaw: formValues.flaw,
+            hair: formValues.hair,
+            height: formValues.height,
+            ideal: formValues.ideal,
+            intelligence: formValues.intelligence,
+            characterName: formValues.name,
+            personalityTrait: formValues.personalityTrait,
+            characterRace: JSON.parse(formValues.race),
+            skin: formValues.skin,
+            strength: formValues.strength,
+            characterSubrace: JSON.parse(formValues.subrace),
+            treasure: formValues.treasure,
+            weight: formValues.weight,
+            wisdom: formValues.wisdom,
+            };
+
+        CharacterService.createCharacter(character).then(res =>{
+            this.props.history.push(`successful_create/${res.data.id}`)
+        })
     }
 
     render() {

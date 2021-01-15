@@ -3,6 +3,9 @@ import MenuComponent from './MenuComponent';
 import MainPageComponent from './MainPageComponent';
 import LearnMoreComponent from './LearnMoreComponent';
 import CreateCharacterComponent from './CreateCharacterWizzard/CreateCharacterComponent';
+import SuccessfulCreateComponent from './ViewCharacter/SuccessfulCreateComponent';
+import CharacterDetailsComponent from './ViewCharacter/CharacterDetailsComponent';
+
 
 import ProficienciesListComponent from './OtherStats/ProficienciesListComponent';
 import PersonalityTraitsListComponent from './OtherStats/PersonalityTraitsListComponent';
@@ -46,7 +49,11 @@ class App extends React.Component {
                             <Route path="/view_stats/flaws" exact component={FlawListComponent}></Route>
                             <Route path="/view_stats/equipment" exact component={EquipmentListComponent}></Route>
                             <Route path="/view_stats/bonds" exact component={BondListComponent}></Route>
-                            
+
+                            <Route path="/successful_create/:id" exact component={SuccessfulCreateComponent}></Route>
+
+                            <Route path="/view_character/:id" exact component={CharacterDetailsComponent}></Route>
+
                         </Switch>
                     </div>
                 </BrowserRouter>

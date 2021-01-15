@@ -17,28 +17,28 @@ const CreateCharacterThirdPage = props => {
             const responsePersonality = await OtherStatsService.getPersonalityTraits()
             
             if (!unmounted) {
-                setPersonalityTraits(responsePersonality.data.map((personalityTrait) => ({ id: personalityTrait.id, value: personalityTrait.trait, object:personalityTrait })));
+                setPersonalityTraits(responsePersonality.data.map((personalityTrait) => ({ id: personalityTrait.id, value: personalityTrait.trait })));
                 setLoading(false);
             }
 
             const responseIdeal = await OtherStatsService.getIdeals()
 
             if (!unmounted) {
-                setIdeals(responseIdeal.data.map((ideal) => ({ id: ideal.id, value: ideal.ideal, object:ideal })));
+                setIdeals(responseIdeal.data.map((ideal) => ({ id: ideal.id, value: ideal.ideal })));
                 setLoading(false);
             }
 
             const responseFlaw = await OtherStatsService.getFlaws()
 
             if (!unmounted) {
-                setFlaws(responseFlaw.data.map((flaw) => ({ id: flaw.id, value: flaw.flaw, object:flaw })));
+                setFlaws(responseFlaw.data.map((flaw) => ({ id: flaw.id, value: flaw.flaw })));
                 setLoading(false);
             }
 
             const responseBonds = await OtherStatsService.getBonds()
 
             if (!unmounted) {
-                setBonds(responseBonds.data.map((bond) => ({ id: bond.id, value: bond.bond, object:bond })));
+                setBonds(responseBonds.data.map((bond) => ({ id: bond.id, value: bond.bond })));
                 setLoading(false);
             }
         }
@@ -57,7 +57,7 @@ const CreateCharacterThirdPage = props => {
             <select {...input} disabled={loading}>
             <option>---</option>
             {optionList.map(option => (
-                <option key={option.id} value={JSON.stringify(option.object)}>
+                <option key={option.id} value={option.value}>
                     {option.value}
                 </option>
             ))}

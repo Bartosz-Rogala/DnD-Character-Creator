@@ -49,7 +49,7 @@ const CreateCharacterFourthPage = props => {
             <div className="ui mini form">
                 <div className="two fields">
                     <div className="field">
-                        <Field name="alliesAndOrganizations" component={renderTextArea} label="Enter your character's allies and organisations" />
+                        <Field name="alliesAndOrganisations" component={renderTextArea} label="Enter your character's allies and organisations" />
                     </div>
                     <div className="field">
                         <Field name="characterBackstory" component={renderTextArea} label="Enter backstory of your character (max. 720 characters)" />

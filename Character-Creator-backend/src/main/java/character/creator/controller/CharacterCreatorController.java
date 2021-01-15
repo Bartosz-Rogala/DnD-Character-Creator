@@ -1,14 +1,16 @@
 package character.creator.controller;
 
+import character.creator.exception.ResourceNotFoundException;
 import character.creator.model.*;
 
+import character.creator.model.DnDCharacter;
 import character.creator.repository.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @CrossOrigin
 @RestController
@@ -50,6 +52,9 @@ public class CharacterCreatorController {
 
     @Autowired
     private AlignmentRepository alignmentRepository;
+
+    @Autowired
+    private DnDCharacterRepository dnDCharacterRepository;
 
 
 //    get all proficiencies
@@ -125,9 +130,24 @@ public class CharacterCreatorController {
     }
 
 
-    //    get all alignments
+//    get all alignments
     @GetMapping("/alignments")
     public List<Alignment> getAllAlignments() {
         return (List<Alignment>) alignmentRepository.findAll();
+    }
+
+//    create character rest api
+    @PostMapping("/character/create")
+    public DnDCharacter createCharacter(@RequestBody DnDCharacter character) {
+        return dnDCharacterRepository.save(character);
+    }
+
+//    get character by id rest api
+    @GetMapping("/character/created/{id}")
+    public ResponseEntity<DnDCharacter> getCharacterById(@PathVariable Long id) {
+        DnDCharacter character = dnDCharacterRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("character with id : " + id + " does not exist"));
+
+        return ResponseEntity.ok(character);
     }
 }
