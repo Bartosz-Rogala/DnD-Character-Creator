@@ -34,7 +34,7 @@ class CreateCharacterComponent extends Component {
         let character = {
             additionalFeaturesAndTraits: formValues.additionalFeaturesAndTraits, 
             age: formValues.age, 
-            alignment: formValues.alignment.alignment,
+            alignment: JSON.parse(formValues.alignment),
             alliesAndOrganisations: formValues.alliesAndOrganisations,
             characterBackground: JSON.parse(formValues.background),
             bond: formValues.bond,

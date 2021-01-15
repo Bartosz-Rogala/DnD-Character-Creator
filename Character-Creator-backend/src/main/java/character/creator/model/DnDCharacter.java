@@ -28,7 +28,8 @@ public class DnDCharacter {
     @OneToOne
     private CharacterBackground characterBackground;
 
-    private String alignment;
+    @OneToOne
+    private Alignment alignment;
 
     private int strength;
     private int dexterity;
