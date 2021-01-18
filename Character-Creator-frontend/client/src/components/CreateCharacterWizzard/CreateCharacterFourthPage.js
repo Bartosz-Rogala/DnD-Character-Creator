@@ -18,7 +18,7 @@ const CreateCharacterFourthPage = props => {
     )
 
     return (
-        <form onSubmit={handleSubmit} className="ui form error">
+        <form onSubmit={handleSubmit} className="ui form segment error">
             <div className="ui mini form">
                 <div className="three fields">
                     <div className="field">

@@ -80,7 +80,7 @@ const CreateCharacterFirstPage = props => {
     );
 
     return (
-        <form onSubmit={handleSubmit} className="ui form error">
+        <form onSubmit={handleSubmit} className="ui form segment error">
             <Field name="name" component={renderField} label="Enter character name" />
             <Field optionList={characterClasses} name="class" component={renderSelector} label="Choose a class" fieldName="className" />
             <Field optionList={characterRaces} onChange={(e) => getSubraceInfo(e.target.options[e.target.options.selectedIndex].getAttribute("datakey"))} name="race" component={renderSelector} label="Choose a race" />

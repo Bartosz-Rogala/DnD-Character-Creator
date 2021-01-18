@@ -145,7 +145,7 @@ public class CharacterCreatorController {
 
 //    get character by id rest api
     @GetMapping("/character/created/{id}")
-    public ResponseEntity<DnDCharacter> getCharacterById(@PathVariable Long id) {
+        public ResponseEntity<DnDCharacter> getCharacterById(@PathVariable Long id) {
         DnDCharacter character = dnDCharacterRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("character with id : " + id + " does not exist"));
 

@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import validate from './validate';
 import OtherStatsService from '../../services/OtherStatsService';
+// import { Multiselect } from "multiselect-react-dropdown";
+import Multiselect from 'react-widgets/lib/Multiselect';
+import 'react-widgets/dist/css/react-widgets.css'
+
 
 const CreateCharacterThirdPage = props => {
     const [loading, setLoading] = useState(true);
@@ -10,6 +14,11 @@ const CreateCharacterThirdPage = props => {
     const [flaws, setFlaws] = useState([]);
     const [bonds, setBonds] = useState([]);
     const { handleSubmit, previousPage, selectedClass, selectedBackground  } = props;
+
+    const equipmentData = selectedClass.equipment.concat(selectedBackground.equipment)
+
+
+
 
     useEffect(() => {
         let unmounted = false;
@@ -44,12 +53,12 @@ const CreateCharacterThirdPage = props => {
 
         }
         getInfo();
-        
         return () => {
             unmounted = true;
         }
         
     }, []);
+
 
     const renderSelector = ({ input, optionList, label, meta: {touched, error} }) => (
         <div className="field">
@@ -69,39 +78,31 @@ const CreateCharacterThirdPage = props => {
         </div>
     );
 
-    const renderEquipment = ({ input, optionClass, optionBackground, label, meta: {touched, error} }) => (
+    const renderEquipment = ({ input, label, meta: {touched, error}, ...rest }) => 
+    <div className="field">
+    <label>{label}</label>
+    {touched && error && <span>{error}</span>}
+    <Multiselect {...input}
+    showPlaceholderWithValues
+    placeholder='name, properties'
+    data={equipmentData}
+    valueField='id'
+    textField={equipment => equipment.name + ', ' + equipment.properties}
+    onBlur={() => input.onBlur()} />
+    </div>
+
         
-        <div className="field">
-            
-            <label>{label}</label>
-            {touched && error && <span>{error}</span>}
-            <select {...input}  multiple="" className="ui dropdown" disabled={loading}>
-            <option>---</option>
-            {optionClass.map(option => (
-                <option key={option.id} value={option.name}>
-                    {option.name}
-                </option>
-            ))}
-            {optionBackground.map(option => (
-                <option key={option.id} value={option.name}>
-                    {option.name}
-                </option>
-            ))}
-            
-            </select>
-            
-        </div>
         
-    );
+    
 
     return (
-        <form onSubmit={handleSubmit} className="ui form error">
+        <form onSubmit={handleSubmit} className="ui form segment error">
             <Field optionList={personalityTraits} name="personalityTrait" component={renderSelector} label="Choose personality trait" fieldName="personalityTrait" />
             <Field optionList={ideals} name="ideal" component={renderSelector} label="Choose ideal" fieldName="ideal" />
             <Field optionList={flaws} name="flaw" component={renderSelector} label="Choose flaw" fieldName="flaw" />
             <Field optionList={bonds} name="bond" component={renderSelector} label="Choose bond" fieldName="bond" />
 
-            <Field optionClass={selectedClass.equipment} optionBackground={selectedBackground.equipment} name="equipment" component={renderEquipment} label="Choose equipment" fieldName="equipment" />
+            <Field data={equipmentData} name="equipment" component={renderEquipment} label="Choose equipment (max 3)" fieldName="equipment" />
             
 
             <button className="ui button positive">
@@ -110,9 +111,12 @@ const CreateCharacterThirdPage = props => {
             <button style={{marginLeft: "10px"}} type="button" className="ui button secondary" onClick={previousPage}>
                 Previous
             </button>
+
+            
         </form>
     );
 }
+
 
 export default reduxForm({
     form: 'createCharacter',

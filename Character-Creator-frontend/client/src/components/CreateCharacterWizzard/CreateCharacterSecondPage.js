@@ -61,7 +61,7 @@ const CreateCharacterSecondPage = (props) => {
     }
 
     return (
-        <form onSubmit={handleSubmit} className="ui form error">
+        <form onSubmit={handleSubmit} className="ui form segment error">
             <h2 className="ui center aligned icon header">
                 <i className="edit icon"></i>
                 <div className="content">
