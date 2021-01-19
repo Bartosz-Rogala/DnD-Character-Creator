@@ -6,6 +6,8 @@ import javax.persistence.*;
 import javax.persistence.ManyToMany;
 import java.util.List;
 
+import static java.lang.Math.floor;
+
 @Data
 @Entity
 public class DnDCharacter {
@@ -31,12 +33,22 @@ public class DnDCharacter {
     @OneToOne
     private Alignment alignment;
 
+    @ManyToMany(targetEntity = Equipment.class)
+    private List<Equipment> equipment;
+
     private int strength;
     private int dexterity;
     private int constitution;
     private int intelligence;
     private int wisdom;
     private int charisma;
+
+    private int strengthModifier;
+    private int dexterityModifier;
+    private int constitutionModifier;
+    private int intelligenceModifier;
+    private int wisdomModifier;
+    private int charismaModifier;
 
     private String personalityTrait;
     private String ideal;
@@ -65,5 +77,21 @@ public class DnDCharacter {
     @Lob
     @Column(name="TREASURE", length=512)
     private String treasure;
+
+    public DnDCharacter() {
+
+    }
+
+    public DnDCharacter(int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma,
+                        CharacterRace characterRace, CharacterSubrace characterSubrace) {
+        super();
+        this.strengthModifier = (int) (Math.floor((strength-10)/2)+characterRace.getStrengthBonus()+characterSubrace.getStrengthBonus());
+        this.dexterityModifier = (int) (Math.floor((dexterity-10)/2)+characterRace.getDexterityBonus()+characterSubrace.getDexterityBonus());
+        this.constitutionModifier = (int) (Math.floor((constitution-10)/2)+characterRace.getConstitutionBonus()+characterSubrace.getConstitutionBonus());
+        this.intelligenceModifier = (int) (Math.floor((intelligence-10)/2)+characterRace.getIntelligenceBonus()+characterSubrace.getIntelligenceBonus());
+        this.wisdomModifier = (int) (Math.floor((wisdom-10)/2)+characterRace.getWisdomBonus()+characterSubrace.getWisdomBonus());
+        this.charismaModifier = (int) (Math.floor((charisma-10)/2)+characterRace.getCharismaBonus()+characterSubrace.getCharismaBonus());
+
+    }
 
 }

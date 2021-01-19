@@ -10,6 +10,7 @@ import BackstoryComponent from './Details/BackstoryComponent';
 import AlliesAndOrganisationsComponent from './Details/AlliesAndOrganisationsComponent';
 import AdditionalFeaturesComponent from './Details/AdditionalFeaturesComponent';
 import TreasureComponent from './Details/TreasureComponent';
+import EquipmentComponent from './Details/EquipmentComponent';
 
 class CharacterDetailsComponent extends Component {
     constructor(props) {
@@ -47,6 +48,7 @@ class CharacterDetailsComponent extends Component {
                         </div>
                         <AbilitiesComponent info={this.state.character} />
                         <BackstoryComponent info={this.state.character} />
+                        <EquipmentComponent info={this.state.character} />
                     </div>
                     <div className="column">
                         <BasicInformation info={this.state} />

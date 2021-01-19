@@ -4,7 +4,7 @@ import validate from './validate';
 import OtherStatsService from '../../services/OtherStatsService';
 // import { Multiselect } from "multiselect-react-dropdown";
 import Multiselect from 'react-widgets/lib/Multiselect';
-import 'react-widgets/dist/css/react-widgets.css'
+import 'react-widgets/dist/css/react-widgets.css';
 
 
 const CreateCharacterThirdPage = props => {
@@ -16,7 +16,6 @@ const CreateCharacterThirdPage = props => {
     const { handleSubmit, previousPage, selectedClass, selectedBackground  } = props;
 
     const equipmentData = selectedClass.equipment.concat(selectedBackground.equipment)
-
 
 
 
@@ -52,6 +51,7 @@ const CreateCharacterThirdPage = props => {
             }
 
         }
+        
         getInfo();
         return () => {
             unmounted = true;
@@ -79,18 +79,22 @@ const CreateCharacterThirdPage = props => {
     );
 
     const renderEquipment = ({ input, label, meta: {touched, error}, ...rest }) => 
+    
     <div className="field">
     <label>{label}</label>
     {touched && error && <span>{error}</span>}
-    <Multiselect {...input}
+    <Multiselect 
+    {...input}
+    value={input.value || []}
     showPlaceholderWithValues
-    placeholder='name, properties'
+    groupBy='subtype'
+    placeholder='name, properties, subtype'
     data={equipmentData}
-    valueField='id'
-    textField={equipment => equipment.name + ', ' + equipment.properties}
-    onBlur={() => input.onBlur()} />
+    textField={equipment => equipment.name + ', ' + equipment.properties + ', ' + equipment.subtype}
+    onBlur={() => input.onBlur()}
+    {...rest}
+    />
     </div>
-
         
         
     
@@ -102,7 +106,7 @@ const CreateCharacterThirdPage = props => {
             <Field optionList={flaws} name="flaw" component={renderSelector} label="Choose flaw" fieldName="flaw" />
             <Field optionList={bonds} name="bond" component={renderSelector} label="Choose bond" fieldName="bond" />
 
-            <Field data={equipmentData} name="equipment" component={renderEquipment} label="Choose equipment (max 3)" fieldName="equipment" />
+            <Field data={equipmentData} name="equipment" component={renderEquipment} label="Choose equipment (max 3)" />
             
 
             <button className="ui button positive">
