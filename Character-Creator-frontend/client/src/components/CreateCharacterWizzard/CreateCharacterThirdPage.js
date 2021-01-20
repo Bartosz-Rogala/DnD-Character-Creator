@@ -14,9 +14,11 @@ const CreateCharacterThirdPage = props => {
     const [flaws, setFlaws] = useState([]);
     const [bonds, setBonds] = useState([]);
     const [languages, setLangauges] = useState([]);
+    const [equipment, setEquipment] = useState([]);
+
+
     const { handleSubmit, previousPage, selectedClass, selectedBackground, selectedRace  } = props;
 
-    const equipmentData = selectedClass.equipment.concat(selectedBackground.equipment)
 
 
 
@@ -55,6 +57,13 @@ const CreateCharacterThirdPage = props => {
 
             if (!unmounted) {
                 setLangauges(responseLanguages.data.map((language) =>  language ));
+                setLoading(false);
+            }
+
+            const responseEquipment = await OtherStatsService.getEquipment()
+
+            if (!unmounted) {
+                setEquipment(responseEquipment.data.map((equipment) =>  equipment ));
                 setLoading(false);
             }
 
@@ -114,13 +123,13 @@ const CreateCharacterThirdPage = props => {
             <Field optionList={bonds} name="bond" component={renderSelector} label="Choose bond" fieldName="bond" />
 
             <Field 
-                data={equipmentData}  
+                data={equipment}  
                 name="equipment"
                 group='subtype'
                 placeholder='name, properties, subtype'
                 shownText={equipment => equipment.name + ', ' + equipment.properties + ', ' + equipment.subtype}
                 component={renderMultiselect} 
-                label="Choose equipment (max 3)"
+                label="Choose equipment - consult Player's Handbook to choose proper equipment"
             />
             
             <Field 

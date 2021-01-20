@@ -45,6 +45,9 @@ const CreateCharacterSecondPage = (props) => {
 
 
     const AbilityModifier = ({ability, raceBonus, subraceBonus}) => {
+        if (!subraceBonus) {
+            subraceBonus = 0;
+        }
         if (ability === 0) {
             return (
                 <div>

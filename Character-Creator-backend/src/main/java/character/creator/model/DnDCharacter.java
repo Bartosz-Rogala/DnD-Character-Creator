@@ -44,6 +44,8 @@ public class DnDCharacter {
 
     private int passivePerception;
     private int proficiencyBonus;
+    private int initiative;
+    private int maxHitPoints;
 
     private int strength;
     private int dexterity;
@@ -89,13 +91,26 @@ public class DnDCharacter {
 
     @PrePersist
     void Modifiers() {
-        this.strengthModifier = (int) (Math.floor((strength-10)/2)+characterRace.getStrengthBonus()+characterSubrace.getStrengthBonus());
-        this.dexterityModifier = (int) (Math.floor((dexterity-10)/2)+characterRace.getDexterityBonus()+characterSubrace.getDexterityBonus());
-        this.constitutionModifier = (int) (Math.floor((constitution-10)/2)+characterRace.getConstitutionBonus()+characterSubrace.getConstitutionBonus());
-        this.intelligenceModifier = (int) (Math.floor((intelligence-10)/2)+characterRace.getIntelligenceBonus()+characterSubrace.getIntelligenceBonus());
-        this.wisdomModifier = (int) (Math.floor((wisdom-10)/2)+characterRace.getWisdomBonus()+characterSubrace.getWisdomBonus());
-        this.charismaModifier = (int) (Math.floor((charisma-10)/2)+characterRace.getCharismaBonus()+characterSubrace.getCharismaBonus());
+        if (characterSubrace == null) {
+            this.strengthModifier = (int) (Math.floor((strength-10)/2)+characterRace.getStrengthBonus());
+            this.dexterityModifier = (int) (Math.floor((dexterity-10)/2)+characterRace.getDexterityBonus());
+            this.constitutionModifier = (int) (Math.floor((constitution-10)/2)+characterRace.getConstitutionBonus());
+            this.intelligenceModifier = (int) (Math.floor((intelligence-10)/2)+characterRace.getIntelligenceBonus());
+            this.wisdomModifier = (int) (Math.floor((wisdom-10)/2)+characterRace.getWisdomBonus());
+            this.charismaModifier = (int) (Math.floor((charisma-10)/2)+characterRace.getCharismaBonus());
+        } else {
+            this.strengthModifier = (int) (Math.floor((strength-10)/2)+characterRace.getStrengthBonus()+characterSubrace.getStrengthBonus());
+            this.dexterityModifier = (int) (Math.floor((dexterity-10)/2)+characterRace.getDexterityBonus()+characterSubrace.getDexterityBonus());
+            this.constitutionModifier = (int) (Math.floor((constitution-10)/2)+characterRace.getConstitutionBonus()+characterSubrace.getConstitutionBonus());
+            this.intelligenceModifier = (int) (Math.floor((intelligence-10)/2)+characterRace.getIntelligenceBonus()+characterSubrace.getIntelligenceBonus());
+            this.wisdomModifier = (int) (Math.floor((wisdom-10)/2)+characterRace.getWisdomBonus()+characterSubrace.getWisdomBonus());
+            this.charismaModifier = (int) (Math.floor((charisma-10)/2)+characterRace.getCharismaBonus()+characterSubrace.getCharismaBonus());
+        }
         this.proficiencyBonus = 2;
+        this.initiative = dexterityModifier;
+        this.maxHitPoints = 8 + constitutionModifier;
+
+
 
         if (skills.stream().anyMatch(o -> o.getName().equals("Perception"))) {
             this.passivePerception = 10 + wisdomModifier + proficiencyBonus;

@@ -25,7 +25,7 @@ const BasicInformation = ({info}) => {
                     </tr>
                     <tr>
                         <td>Subrace</td>
-                        <td>{info.characterSubrace.subraceName}</td>
+                        <td>{!info.characterSubrace ? '---' : info.characterSubrace.subraceName}</td>
                     </tr>
                     <tr>
                         <td>Background</td>

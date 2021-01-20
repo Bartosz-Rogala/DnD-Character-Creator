@@ -13,6 +13,7 @@ import TreasureComponent from './Details/TreasureComponent';
 import EquipmentComponent from './Details/EquipmentComponent';
 import SkillsComponent from './Details/SkillsComponent';
 import LangaugesComponent from './Details/LanguagesComponent';
+import OtherProficienciesComponent from './Details/OtherProficienciesComponent';
 
 class CharacterDetailsComponent extends Component {
     constructor(props) {
@@ -60,6 +61,7 @@ class CharacterDetailsComponent extends Component {
                     </div>
                     <div className="column">
                         <SkillsComponent info={this.state.character} />
+                        <OtherProficienciesComponent info={this.state.character} />
                         <InspirationComponent info={this.state.character} />
                         <AdditionalFeaturesComponent info={this.state.character} />
                         <TreasureComponent info={this.state.character} />

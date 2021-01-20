@@ -32,7 +32,9 @@ class CreateCharacterComponent extends Component {
     toSecondPage(formValues) {
         this.setState({ page: this.state.page + 1 })
         this.setState({ race: JSON.parse(formValues.race) })
-        this.setState({ subrace: JSON.parse(formValues.subrace) })
+        if(formValues.subrace) {
+            this.setState({ subrace: JSON.parse(formValues.subrace) })
+        }
         this.setState({ class: JSON.parse(formValues.class) })
         this.setState({ background: JSON.parse(formValues.background) })
         
@@ -41,6 +43,8 @@ class CreateCharacterComponent extends Component {
     
 
     onSubmit = (formValues) => {
+
+        
 
         let character = {
             additionalFeaturesAndTraits: formValues.additionalFeaturesAndTraits, 
@@ -61,20 +65,29 @@ class CreateCharacterComponent extends Component {
             height: formValues.height,
             ideal: formValues.ideal,
             intelligence: formValues.intelligence,
-            languages: formValues.backgroundLanguages.concat(this.state.race.languages),
             characterName: formValues.name,
             personalityTrait: formValues.personalityTrait,
             characterRace: JSON.parse(formValues.race),
             skills: formValues.classSkills.concat(formValues.backgroundSkills),
             skin: formValues.skin,
             strength: formValues.strength,
-            characterSubrace: JSON.parse(formValues.subrace),
             treasure: formValues.treasure,
             weight: formValues.weight,
             wisdom: formValues.wisdom,
             };
 
-            
+            if(formValues.subrace) {
+                character['characterSubrace'] = JSON.parse(formValues.subrace)
+            }
+
+            if(formValues.backgroundLanguages) {
+                character['languages'] = formValues.backgroundLanguages.concat(this.state.race.languages)
+                
+            } else {
+                character['languages'] = this.state.race.languages
+                
+            }
+
 
         CharacterService.createCharacter(character).then(res =>{
             this.props.history.push(`successful_create/${res.data.id}`)

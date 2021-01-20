@@ -20,7 +20,7 @@ const SkillsComponent = ({info}) => {
                             <td>Loading...</td>
                         </tr> 
                     : info.skills.map(skills =>
-                        <tr key={skills.id}>
+                        <tr key={skills.id + skills.name}>
                             <td>{skills.name}</td>
                             <td>{skills.type}</td>
                         </tr>
