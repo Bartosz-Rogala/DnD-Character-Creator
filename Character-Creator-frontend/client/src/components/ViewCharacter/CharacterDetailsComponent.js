@@ -11,6 +11,8 @@ import AlliesAndOrganisationsComponent from './Details/AlliesAndOrganisationsCom
 import AdditionalFeaturesComponent from './Details/AdditionalFeaturesComponent';
 import TreasureComponent from './Details/TreasureComponent';
 import EquipmentComponent from './Details/EquipmentComponent';
+import SkillsComponent from './Details/SkillsComponent';
+import LangaugesComponent from './Details/LanguagesComponent';
 
 class CharacterDetailsComponent extends Component {
     constructor(props) {
@@ -53,9 +55,11 @@ class CharacterDetailsComponent extends Component {
                     <div className="column">
                         <BasicInformation info={this.state} />
                         <PhysicalCharacteristicsComponent info={this.state.character} />
+                        <LangaugesComponent info={this.state} />
                         <AlliesAndOrganisationsComponent info={this.state.character} />
                     </div>
                     <div className="column">
+                        <SkillsComponent info={this.state.character} />
                         <InspirationComponent info={this.state.character} />
                         <AdditionalFeaturesComponent info={this.state.character} />
                         <TreasureComponent info={this.state.character} />

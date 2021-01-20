@@ -20,6 +20,7 @@ public class CharacterClass {
     private String classDescription;
 
     private int hitPoints;
+    private int maxSkills;
     private String hitDice;
     private String savingThrow;
 

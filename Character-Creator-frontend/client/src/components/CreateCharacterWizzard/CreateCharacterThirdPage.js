@@ -13,7 +13,8 @@ const CreateCharacterThirdPage = props => {
     const [ideals, setIdeals] = useState([]);
     const [flaws, setFlaws] = useState([]);
     const [bonds, setBonds] = useState([]);
-    const { handleSubmit, previousPage, selectedClass, selectedBackground  } = props;
+    const [languages, setLangauges] = useState([]);
+    const { handleSubmit, previousPage, selectedClass, selectedBackground, selectedRace  } = props;
 
     const equipmentData = selectedClass.equipment.concat(selectedBackground.equipment)
 
@@ -50,6 +51,13 @@ const CreateCharacterThirdPage = props => {
                 setLoading(false);
             }
 
+            const responseLanguages = await OtherStatsService.getLanguages()
+
+            if (!unmounted) {
+                setLangauges(responseLanguages.data.map((language) =>  language ));
+                setLoading(false);
+            }
+
         }
         
         getInfo();
@@ -78,7 +86,7 @@ const CreateCharacterThirdPage = props => {
         </div>
     );
 
-    const renderEquipment = ({ input, label, meta: {touched, error}, ...rest }) => 
+    const renderMultiselect = ({ input, placeholder, shownText, group, label, meta: {touched, error}, ...rest }) => 
     
     <div className="field">
     <label>{label}</label>
@@ -87,10 +95,9 @@ const CreateCharacterThirdPage = props => {
     {...input}
     value={input.value || []}
     showPlaceholderWithValues
-    groupBy='subtype'
-    placeholder='name, properties, subtype'
-    data={equipmentData}
-    textField={equipment => equipment.name + ', ' + equipment.properties + ', ' + equipment.subtype}
+    groupBy={group}
+    placeholder={placeholder}
+    textField={shownText}
     onBlur={() => input.onBlur()}
     {...rest}
     />
@@ -106,8 +113,58 @@ const CreateCharacterThirdPage = props => {
             <Field optionList={flaws} name="flaw" component={renderSelector} label="Choose flaw" fieldName="flaw" />
             <Field optionList={bonds} name="bond" component={renderSelector} label="Choose bond" fieldName="bond" />
 
-            <Field data={equipmentData} name="equipment" component={renderEquipment} label="Choose equipment (max 3)" />
+            <Field 
+                data={equipmentData}  
+                name="equipment"
+                group='subtype'
+                placeholder='name, properties, subtype'
+                shownText={equipment => equipment.name + ', ' + equipment.properties + ', ' + equipment.subtype}
+                component={renderMultiselect} 
+                label="Choose equipment (max 3)"
+            />
             
+            <Field 
+                data={selectedClass.skills} 
+                name="classSkills" 
+                group='type'
+                placeholder='name, type'
+                shownText={skill => skill.name + ', ' + skill.type}
+                component={renderMultiselect} 
+                label={"Choose class skills (max " + selectedClass.maxSkills + ")"}  
+            />
+
+            <Field 
+                data={selectedBackground.skills} 
+                name="backgroundSkills" 
+                group='type'
+                placeholder='name, type'
+                shownText={skill => skill.name + ', ' + skill.type}
+                component={renderMultiselect} 
+                label="Choose background skills (You can select all of them ;) )"
+            />
+
+            <div className="ui compact message">
+                <h4>Languages already known (based on race):</h4>
+                {selectedRace.languages.map(language =>
+                <div key={language.id}>
+                    {language.languageName}
+                </div>)}
+            </div>
+            
+            <Field 
+                data={languages} 
+                name="backgroundLanguages" 
+                group=''
+                placeholder='language name'
+                shownText='languageName'
+                component={renderMultiselect} 
+                label={"Choose languages based on background (max " + selectedBackground.maxLanguages + ")"}
+            />
+
+            
+
+
+
 
             <button className="ui button positive">
                 Next

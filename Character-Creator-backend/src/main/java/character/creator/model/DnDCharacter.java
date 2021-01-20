@@ -36,6 +36,15 @@ public class DnDCharacter {
     @ManyToMany(targetEntity = Equipment.class)
     private List<Equipment> equipment;
 
+    @ManyToMany(targetEntity = Proficiency.class)
+    private List<Proficiency> skills;
+
+    @ManyToMany(targetEntity = Language.class)
+    private List<Language> languages;
+
+    private int passivePerception;
+    private int proficiencyBonus;
+
     private int strength;
     private int dexterity;
     private int constitution;
@@ -78,19 +87,21 @@ public class DnDCharacter {
     @Column(name="TREASURE", length=512)
     private String treasure;
 
-    public DnDCharacter() {
-
-    }
-
-    public DnDCharacter(int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma,
-                        CharacterRace characterRace, CharacterSubrace characterSubrace) {
-        super();
+    @PrePersist
+    void Modifiers() {
         this.strengthModifier = (int) (Math.floor((strength-10)/2)+characterRace.getStrengthBonus()+characterSubrace.getStrengthBonus());
         this.dexterityModifier = (int) (Math.floor((dexterity-10)/2)+characterRace.getDexterityBonus()+characterSubrace.getDexterityBonus());
         this.constitutionModifier = (int) (Math.floor((constitution-10)/2)+characterRace.getConstitutionBonus()+characterSubrace.getConstitutionBonus());
         this.intelligenceModifier = (int) (Math.floor((intelligence-10)/2)+characterRace.getIntelligenceBonus()+characterSubrace.getIntelligenceBonus());
         this.wisdomModifier = (int) (Math.floor((wisdom-10)/2)+characterRace.getWisdomBonus()+characterSubrace.getWisdomBonus());
         this.charismaModifier = (int) (Math.floor((charisma-10)/2)+characterRace.getCharismaBonus()+characterSubrace.getCharismaBonus());
+        this.proficiencyBonus = 2;
+
+        if (skills.stream().anyMatch(o -> o.getName().equals("Perception"))) {
+            this.passivePerception = 10 + wisdomModifier + proficiencyBonus;
+        } else {
+            this.passivePerception = 10 + wisdomModifier;
+        }
 
     }
 

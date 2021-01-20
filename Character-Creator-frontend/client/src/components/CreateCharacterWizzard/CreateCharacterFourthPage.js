@@ -70,6 +70,7 @@ const CreateCharacterFourthPage = props => {
 
             <button type="submit" disabled={pristine || submitting} className="ui button primary">
                 Submit
+                
             </button>
             <button style={{marginLeft: "10px"}} type="button" className="ui button secondary" onClick={previousPage}>
                 Previous

@@ -16,32 +16,32 @@ const AbilitiesComponent = ({info}) => {
                 <tbody>
                     <tr>
                         <td>Strength</td>
-                        <td></td>
+                        <td>{info.strengthModifier}</td>
                         <td>{info.strength}</td>
                     </tr>
                     <tr>
                         <td>Dexterity</td>
-                        <td></td>
+                        <td>{info.dexterityModifier}</td>
                         <td>{info.dexterity}</td>
                     </tr>
                     <tr>
                         <td>Constitution</td>
-                        <td></td>
+                        <td>{info.constitutionModifier}</td>
                         <td>{info.constitution}</td>
                     </tr>
                     <tr>
                         <td>Intelligence</td>
-                        <td></td>
+                        <td>{info.intelligenceModifier}</td>
                         <td>{info.intelligence}</td>
                     </tr>
                     <tr>
                         <td>Wisdom</td>
-                        <td></td>
+                        <td>{info.wisdomModifier}</td>
                         <td>{info.wisdom}</td>
                     </tr>
                     <tr>
                         <td>Charisma</td>
-                        <td></td>
+                        <td>{info.charismaModifier}</td>
                         <td>{info.charisma}</td>
                     </tr>
                 </tbody>

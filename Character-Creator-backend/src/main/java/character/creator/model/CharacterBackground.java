@@ -18,9 +18,8 @@ public class CharacterBackground {
     @Lob
     @Column(name="BACKGROUND_DESCRIPTION", length=256)
     private String backgroundDescription;
-
-    @ManyToMany(targetEntity = Language.class)
-    private List<Language> languages;
+    
+    private int maxLanguages;
 
     @ManyToMany(targetEntity = Proficiency.class)
     private List<Proficiency> skills;

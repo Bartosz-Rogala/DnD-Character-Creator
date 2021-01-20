@@ -41,7 +41,6 @@ class CreateCharacterComponent extends Component {
     
 
     onSubmit = (formValues) => {
-        console.log(formValues);
 
         let character = {
             additionalFeaturesAndTraits: formValues.additionalFeaturesAndTraits, 
@@ -62,9 +61,11 @@ class CreateCharacterComponent extends Component {
             height: formValues.height,
             ideal: formValues.ideal,
             intelligence: formValues.intelligence,
+            languages: formValues.backgroundLanguages.concat(this.state.race.languages),
             characterName: formValues.name,
             personalityTrait: formValues.personalityTrait,
             characterRace: JSON.parse(formValues.race),
+            skills: formValues.classSkills.concat(formValues.backgroundSkills),
             skin: formValues.skin,
             strength: formValues.strength,
             characterSubrace: JSON.parse(formValues.subrace),
@@ -73,9 +74,13 @@ class CreateCharacterComponent extends Component {
             wisdom: formValues.wisdom,
             };
 
+            
+
         CharacterService.createCharacter(character).then(res =>{
             this.props.history.push(`successful_create/${res.data.id}`)
+            
         })
+
     }
 
 
@@ -99,6 +104,7 @@ class CreateCharacterComponent extends Component {
                     <CreateCharacterThirdPage
                         previousPage={this.previousPage}
                         onSubmit={this.nextPage}
+                        selectedRace={this.state.race}
                         selectedClass={this.state.class}
                         selectedBackground={this.state.background}
                     />
