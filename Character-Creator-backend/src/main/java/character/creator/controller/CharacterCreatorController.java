@@ -6,11 +6,16 @@ import character.creator.model.*;
 import character.creator.model.DnDCharacter;
 import character.creator.repository.*;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.LinkedList;
+import java.io.ByteArrayInputStream;
 import java.util.List;
 
 @CrossOrigin
@@ -153,4 +158,21 @@ public class CharacterCreatorController {
         return ResponseEntity.ok(character);
     }
 
+//    get character for pdf export
+    @GetMapping(value = "/character/export", produces = MediaType.APPLICATION_PDF_VALUE)
+        public ResponseEntity<InputStreamResource> characterSheetExport(@RequestParam Long id) {
+            DnDCharacter character = dnDCharacterRepository.findById(id)
+                    .orElseThrow(() -> new ResourceNotFoundException("character with id : " + id + " does not exist"));
+
+            ByteArrayInputStream bis = DnDCharacterPDFGenerator.CharacterPDF(character);
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Content-Disposition", "attachment; filename=characterSheet.pdf");
+
+            return ResponseEntity
+                    .ok()
+                    .headers(headers)
+                    .contentType(MediaType.APPLICATION_PDF)
+                    .body(new InputStreamResource(bis));
+    }
 }

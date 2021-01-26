@@ -13,6 +13,16 @@ class CharacterService {
     getCharacterById(characterId) {
         return axios.get(CHARACTER_API_BASE_URL + '/created/' + characterId);
     }
+
+    // Get character for pdf export
+    getExportCharacterById(characterId) {
+        return axios.get(CHARACTER_API_BASE_URL + "/export", {
+            params: {
+                id: `${characterId}`
+            },
+            responseType: 'blob'
+        });
+    }
 }
 
 export default new CharacterService();

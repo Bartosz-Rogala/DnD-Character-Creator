@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import CharacterService from '../../services/CharacterService';
-import { Link } from 'react-router-dom';
 
 import AbilitiesComponent from './Details/AbilitiesComponent';
 import BasicInformation from './Details/BasicInformationComponent';
@@ -15,6 +14,7 @@ import SkillsComponent from './Details/SkillsComponent';
 import LangaugesComponent from './Details/LanguagesComponent';
 import OtherProficienciesComponent from './Details/OtherProficienciesComponent';
 
+
 class CharacterDetailsComponent extends Component {
     constructor(props) {
         super(props)
@@ -28,6 +28,24 @@ class CharacterDetailsComponent extends Component {
             characterBackground: {},
             alignment: {}
         }
+    }
+
+    generatePdf(id) {
+
+        CharacterService.getExportCharacterById(id)
+        .then(response => {
+            //Create a Blob from the PDF Stream
+                const file = new Blob(
+                  [response.data],
+                  {type: 'application/pdf'});
+            //Build a URL from the file
+                const fileURL = URL.createObjectURL(file);
+            //Open the URL on new Window
+                window.open(fileURL);
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
 
     componentDidMount() {
@@ -68,11 +86,11 @@ class CharacterDetailsComponent extends Component {
                     </div>
                 </div>
                 <br></br>
-                <Link to="/">
-                    <button style={{marginLeft: "10px"}} className="ui button">
-                        Generate pdf
-                    </button>
-                </Link>
+                
+                <button style={{marginLeft: "10px"}} className="ui button" onClick={() => this.generatePdf(this.state.id)}>
+                    Generate pdf
+                </button>
+                
             </div>
         );
     }

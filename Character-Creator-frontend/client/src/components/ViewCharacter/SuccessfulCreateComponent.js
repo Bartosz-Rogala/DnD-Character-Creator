@@ -40,11 +40,11 @@ class SuccessfulCreateComponent extends Component {
                         View Character
                     </button>
                     </Link>
-                    <Link to="/">
+                    
                     <button style={{marginLeft: "10px"}} className="ui button">
                         Generate pdf
                     </button>
-                    </Link>
+                    
                 </div>
             </div>
         );
