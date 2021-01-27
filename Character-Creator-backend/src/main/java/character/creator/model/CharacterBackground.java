@@ -21,6 +21,12 @@ public class CharacterBackground {
     
     private int maxLanguages;
 
+    @Lob
+    @Column(name="BASIC_EQUIPMENT", length=256)
+    private String basicEquipment;
+
+    private int gold;
+
     @ManyToMany(targetEntity = Proficiency.class)
     private List<Proficiency> skills;
 
