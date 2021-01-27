@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.List;
 
 @CrossOrigin
@@ -160,7 +161,7 @@ public class CharacterCreatorController {
 
 //    get character for pdf export
     @GetMapping(value = "/character/export", produces = MediaType.APPLICATION_PDF_VALUE)
-        public ResponseEntity<InputStreamResource> characterSheetExport(@RequestParam Long id) {
+        public ResponseEntity<InputStreamResource> characterSheetExport(@RequestParam Long id) throws IOException {
             DnDCharacter character = dnDCharacterRepository.findById(id)
                     .orElseThrow(() -> new ResourceNotFoundException("character with id : " + id + " does not exist"));
 
