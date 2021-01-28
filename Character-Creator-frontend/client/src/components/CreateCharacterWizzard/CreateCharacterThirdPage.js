@@ -174,7 +174,7 @@ const CreateCharacterThirdPage = props => {
 
 
 
-            <button className="ui button positive">
+            <button className="ui button DnDpositive">
                 Next
             </button>
             <button style={{marginLeft: "10px"}} type="button" className="ui button secondary" onClick={previousPage}>

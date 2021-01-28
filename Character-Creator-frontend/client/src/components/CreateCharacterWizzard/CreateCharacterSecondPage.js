@@ -68,10 +68,10 @@ const CreateCharacterSecondPage = (props) => {
             <h2 className="ui center aligned icon header">
                 <i className="edit icon"></i>
                 <div className="content">
-                    Simple Equation
+                    Choose your abilities
                     <div className="sub header">
                     <br></br>
-                        Don't be scared! It's simple: 
+                        Don't be scared! It's a simple equation: 
                         <br></br>
                         <br></br>
                         Score + Race Bonus + Subrace Bonus = Ability Modifier
@@ -82,7 +82,7 @@ const CreateCharacterSecondPage = (props) => {
 
             <div className="ui mini form">
                 <div className="two fields">
-                    <div className="field">
+                    <div className="field left">
                         <label>Strength modifier</label>
                         <AbilityModifier ability={selectedStrength} raceBonus={selectedRace.strengthBonus} subraceBonus={selectedSubrace.strengthBonus} />
                     </div>
@@ -94,7 +94,7 @@ const CreateCharacterSecondPage = (props) => {
 
             <div className="ui mini form">
                 <div className="two fields">
-                    <div className="field">
+                    <div className="field left">
                         <label>Dexterity modifier</label>
                         <AbilityModifier ability={selectedDexterity} raceBonus={selectedRace.dexterityBonus} subraceBonus={selectedSubrace.dexterityBonus} />
                     </div>
@@ -106,7 +106,7 @@ const CreateCharacterSecondPage = (props) => {
 
             <div className="ui mini form">
                 <div className="two fields">
-                    <div className="field">
+                    <div className="field left">
                         <label>Constitution modifier</label>
                         <AbilityModifier ability={selectedConstitution} raceBonus={selectedRace.constitutionBonus} subraceBonus={selectedSubrace.constitutionBonus} />
                     </div>
@@ -118,7 +118,7 @@ const CreateCharacterSecondPage = (props) => {
 
             <div className="ui mini form">
                 <div className="two fields">
-                    <div className="field">
+                    <div className="field left">
                         <label>Intelligence modifier</label>
                         <AbilityModifier ability={selectedIntelligence} raceBonus={selectedRace.intelligenceBonus} subraceBonus={selectedSubrace.intelligenceBonus} />
                     </div>
@@ -130,7 +130,7 @@ const CreateCharacterSecondPage = (props) => {
 
             <div className="ui mini form">
                 <div className="two fields">
-                    <div className="field">
+                    <div className="field left">
                         <label>Wisdom modifier</label>
                         <AbilityModifier ability={selectedWisdom} raceBonus={selectedRace.wisdomBonus} subraceBonus={selectedSubrace.wisdomBonus} />
                     </div>
@@ -142,7 +142,7 @@ const CreateCharacterSecondPage = (props) => {
 
             <div className="ui mini form">
                 <div className="two fields">
-                    <div className="field">
+                    <div className="field left">
                         <label>Charisma modifier</label>
                         <AbilityModifier ability={selectedCharisma} raceBonus={selectedRace.charismaBonus} subraceBonus={selectedSubrace.charismaBonus} />
                     </div>
@@ -153,7 +153,7 @@ const CreateCharacterSecondPage = (props) => {
             </div>
             
 
-            <button className="ui button positive">
+            <button className="ui button DnDpositive">
                 Next
             </button>
             <button style={{marginLeft: "10px"}} type="button" className="ui button secondary" onClick={previousPage}>

@@ -12,7 +12,7 @@ class MenuComponent extends Component {
 
     render() {
         return (
-            <div style={{marginBottom: "50px"}} className="ui pointing menu">
+            <div style={{marginBottom: "50px"}} className="dnd ui stackable menu">
                 <Link to="/" className="item">
                     DnD Character Creator
                 </Link>

@@ -88,7 +88,7 @@ const CreateCharacterFirstPage = props => {
             <Field optionList={characterBackgrounds} name="background" component={renderSelector} label="Choose a background" />
             <Field optionList={alignments} name="alignment" component={renderSelector} label="Choose an alignment" />
 
-            <button className="ui button positive">Next</button>
+            <button className="ui button DnDpositive">Next</button>
             <Link to="/">
                 <button style={{marginLeft: "10px"}} className="ui secondary button">
                     Cancel

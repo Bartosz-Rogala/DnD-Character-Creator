@@ -24,11 +24,14 @@ import BondListComponent from './OtherStats/BondListComponent';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import ViewStatsComponent from "./OtherStats/ViewStatsComponent";
 
+// import dndtile from '../resources/dndtiles.jpg';
+import '../DnD.css';
+
 class App extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="mainpage" >
                 <BrowserRouter>
                     <MenuComponent />
                     <div className="ui container">

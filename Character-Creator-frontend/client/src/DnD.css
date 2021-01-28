@@ -1,0 +1,35 @@
+body > #root > div {
+  height: 100vh;
+}
+
+.mainpage {
+    background-image: url(./resources/dndtiles.jpg);
+    
+}
+
+.dnd {
+    opacity: 0.9;
+    background-color: #e7e6e0 !important;
+}
+
+.form {
+    opacity: 0.9;
+    background-color: #e7e6e0 !important;
+}
+
+.left {
+    text-align: right;
+    padding-right: 2% !important;
+}
+
+.DnDnegative {
+    background-color: #8d0202 !important;
+    color: #e7e6e0 !important;
+    opacity: 0.9;
+}
+
+.DnDpositive {
+    background-color: #178302 !important;
+    color: #e7e6e0 !important;
+    opacity: 0.95;
+}

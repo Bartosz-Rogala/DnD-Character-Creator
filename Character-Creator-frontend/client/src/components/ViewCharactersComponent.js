@@ -30,7 +30,7 @@ class ViewCharactersComponent extends Component {
         return (
             <div>
             <h2 className="ui center aligned header">Characters</h2>
-            <table className="ui celled table">
+            <table className="ui celled table dnd">
                 <thead>
                     <tr>
                         <th>Id</th>
@@ -52,11 +52,11 @@ class ViewCharactersComponent extends Component {
                                 <td data-label="Actions">
                                 
                                 <Link to={`/view_character/${character.id}`} className="item">
-                                    <button className="ui positive button">
+                                    <button className="ui DnDpositive button">
                                     View details
                                     </button>
                                 </Link>
-                                <button style={{marginLeft: "10px"}} className="ui negative button" onClick={() => this.deleteCharacter(character.id)}>
+                                <button style={{marginLeft: "10px"}} className="ui DnDnegative button" onClick={() => this.deleteCharacter(character.id)}>
                                     Delete
                                 </button>
                                 </td>
