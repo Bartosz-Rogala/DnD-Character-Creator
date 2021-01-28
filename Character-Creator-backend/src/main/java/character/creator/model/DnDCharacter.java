@@ -4,7 +4,11 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.persistence.ManyToMany;
+import java.util.Comparator;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
+import java.util.stream.StreamSupport;
 
 import static java.lang.Math.floor;
 
@@ -46,6 +50,8 @@ public class DnDCharacter {
     private int proficiencyBonus;
     private int initiative;
     private int maxHitPoints;
+    private int armorClass;
+    private double speed;
 
     private int strength;
     private int dexterity;
@@ -118,6 +124,16 @@ public class DnDCharacter {
             this.passivePerception = 10 + wisdomModifier;
         }
 
+         Integer mainArmor = equipment.stream().filter(eq -> eq.getType().equals("Armor")).max(Comparator.comparing(Equipment::getArmorClass)).map(Equipment::getArmorClass).orElse(0);
+         Integer shieldArmor = equipment.stream().filter(eq -> eq.getSubtype().equals("Shield")).max(Comparator.comparing(Equipment::getArmorClass)).map(Equipment::getArmorClass).orElse(0);
+
+         this.armorClass = mainArmor + shieldArmor;
+
+         if (characterSubrace.getSpeed() != null) {
+             this.speed = characterSubrace.getSpeed();
+         } else {
+             this.speed = characterRace.getSpeed();
+         }
     }
 
 }

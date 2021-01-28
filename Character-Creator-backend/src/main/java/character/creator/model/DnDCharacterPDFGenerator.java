@@ -51,7 +51,7 @@ public class DnDCharacterPDFGenerator {
 
 //      characterName
         Paragraph characterName = new Paragraph(dnDCharacter.getCharacterName()).setFont(font).setFontSize(18);
-        Rectangle characterNameRect = new Rectangle(55, 705, 180, 35);
+        Rectangle characterNameRect = new Rectangle(55, 702, 180, 35);
         new Canvas(new PdfCanvas(pdfDoc.getPage(1)), pdfDoc, characterNameRect)
                 .add(characterName);
 //      characterClass
@@ -157,6 +157,112 @@ public class DnDCharacterPDFGenerator {
         Rectangle passivePerceptionRect = new Rectangle(32, 185, 20, 20);
         new Canvas(new PdfCanvas(pdfDoc.getPage(1)), pdfDoc, passivePerceptionRect)
                 .add(passivePerception);
+
+
+//      ________________saving thows_____________
+        List<String> savingThrows = dnDCharacter.getCharacterClass().getSavingThrows().stream().map(SavingThrow::getName).collect(Collectors.toList());
+
+        if (savingThrows.contains("Strength")) {
+            Paragraph strengthSavingThrow = new Paragraph(dnDCharacter.getStrengthModifier() + dnDCharacter.getProficiencyBonus() + "").setFont(font).setFontSize(10).setTextAlignment(TextAlignment.CENTER);
+            Rectangle strengthSavingThrowRect = new Rectangle(113, 576, 15, 15);
+            new Canvas(new PdfCanvas(pdfDoc.getPage(1)), pdfDoc, strengthSavingThrowRect)
+                    .add(strengthSavingThrow);
+
+            Paragraph strengthProf = new Paragraph("•").setFont(font).setFontSize(15).setTextAlignment(TextAlignment.CENTER);
+            Rectangle strengthProfRect = new Rectangle(94, 572, 20, 20);
+            new Canvas(new PdfCanvas(pdfDoc.getPage(1)), pdfDoc, strengthProfRect)
+                    .add(strengthProf);
+        } else {
+            Paragraph strengthSavingThrow = new Paragraph(dnDCharacter.getStrengthModifier() + "").setFont(font).setFontSize(10).setTextAlignment(TextAlignment.CENTER);
+            Rectangle strengthSavingThrowRect = new Rectangle(113, 576, 15, 15);
+            new Canvas(new PdfCanvas(pdfDoc.getPage(1)), pdfDoc, strengthSavingThrowRect)
+                    .add(strengthSavingThrow);
+        }
+
+        if (savingThrows.contains("Dexterity")) {
+            Paragraph dexteritySavingThrow = new Paragraph(dnDCharacter.getDexterityModifier() + dnDCharacter.getProficiencyBonus() + "").setFont(font).setFontSize(10).setTextAlignment(TextAlignment.CENTER);
+            Rectangle dexteritySavingThrowRect = new Rectangle(113, 562, 15, 15);
+            new Canvas(new PdfCanvas(pdfDoc.getPage(1)), pdfDoc, dexteritySavingThrowRect)
+                    .add(dexteritySavingThrow);
+
+            Paragraph dexterityProf = new Paragraph("•").setFont(font).setFontSize(15).setTextAlignment(TextAlignment.CENTER);
+            Rectangle dexterityProfRect = new Rectangle(94, 558, 20, 20);
+            new Canvas(new PdfCanvas(pdfDoc.getPage(1)), pdfDoc, dexterityProfRect)
+                    .add(dexterityProf);
+        } else {
+            Paragraph dexteritySavingThrow = new Paragraph(dnDCharacter.getDexterityModifier() + "").setFont(font).setFontSize(10).setTextAlignment(TextAlignment.CENTER);
+            Rectangle dexteritySavingThrowRect = new Rectangle(113, 562, 15, 15);
+            new Canvas(new PdfCanvas(pdfDoc.getPage(1)), pdfDoc, dexteritySavingThrowRect)
+                    .add(dexteritySavingThrow);
+        }
+
+        if (savingThrows.contains("Constitution")) {
+            Paragraph constitutionSavingThrow = new Paragraph(dnDCharacter.getConstitutionModifier() + dnDCharacter.getProficiencyBonus() + "").setFont(font).setFontSize(10).setTextAlignment(TextAlignment.CENTER);
+            Rectangle constitutionSavingThrowRect = new Rectangle(113, 548, 15, 15);
+            new Canvas(new PdfCanvas(pdfDoc.getPage(1)), pdfDoc, constitutionSavingThrowRect)
+                    .add(constitutionSavingThrow);
+
+            Paragraph constitutionProf = new Paragraph("•").setFont(font).setFontSize(15).setTextAlignment(TextAlignment.CENTER);
+            Rectangle constitutionProfRect = new Rectangle(94, 545, 20, 20);
+            new Canvas(new PdfCanvas(pdfDoc.getPage(1)), pdfDoc, constitutionProfRect)
+                    .add(constitutionProf);
+        } else {
+            Paragraph constitutionSavingThrow = new Paragraph(dnDCharacter.getConstitutionModifier() + "").setFont(font).setFontSize(10).setTextAlignment(TextAlignment.CENTER);
+            Rectangle constitutionSavingThrowRect = new Rectangle(113, 548, 15, 15);
+            new Canvas(new PdfCanvas(pdfDoc.getPage(1)), pdfDoc, constitutionSavingThrowRect)
+                    .add(constitutionSavingThrow);
+        }
+
+        if (savingThrows.contains("Intelligence")) {
+            Paragraph intelligenceSavingThrow = new Paragraph(dnDCharacter.getIntelligenceModifier() + dnDCharacter.getProficiencyBonus() + "").setFont(font).setFontSize(10).setTextAlignment(TextAlignment.CENTER);
+            Rectangle intelligenceSavingThrowRect = new Rectangle(113, 535, 15, 15);
+            new Canvas(new PdfCanvas(pdfDoc.getPage(1)), pdfDoc, intelligenceSavingThrowRect)
+                    .add(intelligenceSavingThrow);
+
+            Paragraph intelligenceProf = new Paragraph("•").setFont(font).setFontSize(15).setTextAlignment(TextAlignment.CENTER);
+            Rectangle intelligenceProfRect = new Rectangle(94, 531, 20, 20);
+            new Canvas(new PdfCanvas(pdfDoc.getPage(1)), pdfDoc, intelligenceProfRect)
+                    .add(intelligenceProf);
+        } else {
+            Paragraph intelligenceSavingThrow = new Paragraph(dnDCharacter.getIntelligenceModifier() + "").setFont(font).setFontSize(10).setTextAlignment(TextAlignment.CENTER);
+            Rectangle intelligenceSavingThrowRect = new Rectangle(113, 535, 15, 15);
+            new Canvas(new PdfCanvas(pdfDoc.getPage(1)), pdfDoc, intelligenceSavingThrowRect)
+                    .add(intelligenceSavingThrow);
+        }
+
+        if (savingThrows.contains("Wisdom")) {
+            Paragraph wisdomSavingThrow = new Paragraph(dnDCharacter.getWisdomModifier() + dnDCharacter.getProficiencyBonus() + "").setFont(font).setFontSize(10).setTextAlignment(TextAlignment.CENTER);
+            Rectangle wisdomSavingThrowRect = new Rectangle(113, 521, 15, 15);
+            new Canvas(new PdfCanvas(pdfDoc.getPage(1)), pdfDoc, wisdomSavingThrowRect)
+                    .add(wisdomSavingThrow);
+
+            Paragraph wisdomProf = new Paragraph("•").setFont(font).setFontSize(15).setTextAlignment(TextAlignment.CENTER);
+            Rectangle wisdomProfRect = new Rectangle(94, 518, 20, 20);
+            new Canvas(new PdfCanvas(pdfDoc.getPage(1)), pdfDoc, wisdomProfRect)
+                    .add(wisdomProf);
+        } else {
+            Paragraph wisdomSavingThrow = new Paragraph(dnDCharacter.getWisdomModifier() + "").setFont(font).setFontSize(10).setTextAlignment(TextAlignment.CENTER);
+            Rectangle wisdomSavingThrowRect = new Rectangle(113, 521, 15, 15);
+            new Canvas(new PdfCanvas(pdfDoc.getPage(1)), pdfDoc, wisdomSavingThrowRect)
+                    .add(wisdomSavingThrow);
+        }
+
+        if (savingThrows.contains("Charisma")) {
+            Paragraph charismaSavingThrow = new Paragraph(dnDCharacter.getCharismaModifier() + dnDCharacter.getProficiencyBonus() + "").setFont(font).setFontSize(10).setTextAlignment(TextAlignment.CENTER);
+            Rectangle charismaSavingThrowRect = new Rectangle(113, 508, 15, 15);
+            new Canvas(new PdfCanvas(pdfDoc.getPage(1)), pdfDoc, charismaSavingThrowRect)
+                    .add(charismaSavingThrow);
+
+            Paragraph charismaProf = new Paragraph("•").setFont(font).setFontSize(15).setTextAlignment(TextAlignment.CENTER);
+            Rectangle charismaProfRect = new Rectangle(94, 504, 20, 20);
+            new Canvas(new PdfCanvas(pdfDoc.getPage(1)), pdfDoc, charismaProfRect)
+                    .add(charismaProf);
+        } else {
+            Paragraph charismaSavingThrow = new Paragraph(dnDCharacter.getCharismaModifier() + "").setFont(font).setFontSize(10).setTextAlignment(TextAlignment.CENTER);
+            Rectangle charismaSavingThrowRect = new Rectangle(113, 508, 15, 15);
+            new Canvas(new PdfCanvas(pdfDoc.getPage(1)), pdfDoc, charismaSavingThrowRect)
+                    .add(charismaSavingThrow);
+        }
 
 
 //      ________________skills_____________
@@ -477,7 +583,7 @@ public class DnDCharacterPDFGenerator {
         for (Language languages: dnDCharacter.getLanguages()) {
             language += languages.getLanguageName() + ", ";
         }
-        language = language.substring(0, language.length()-1);
+        language = language.substring(0, language.length()-2);
 
         Paragraph languages = new Paragraph("Languages: " + language).setFont(font).setFontSize(10);
         Rectangle languagesRect = new Rectangle(33, 130, 170, 40);
@@ -512,10 +618,10 @@ public class DnDCharacterPDFGenerator {
             }
         }
 
-        if (weaponsProf.length() > 1) weaponsProf = weaponsProf.substring(0, weaponsProf.length()-1);
-        if (armorProf.length() > 1) armorProf = armorProf.substring(0, armorProf.length()-1);
-        if (toolsProf.length() > 1) toolsProf = toolsProf.substring(0, toolsProf.length()-1);
-        if (otherProf.length() > 1) otherProf = otherProf.substring(0, otherProf.length()-1);
+        if (weaponsProf.length() > 1) weaponsProf = weaponsProf.substring(0, weaponsProf.length()-2);
+        if (armorProf.length() > 1) armorProf = armorProf.substring(0, armorProf.length()-2);
+        if (toolsProf.length() > 1) toolsProf = toolsProf.substring(0, toolsProf.length()-2);
+        if (otherProf.length() > 1) otherProf = otherProf.substring(0, otherProf.length()-2);
 
         Paragraph other = new Paragraph("Other: " + otherProf).setFont(font).setFontSize(10);
         Rectangle otherRect = new Rectangle(33, 30, 170, 100);
@@ -543,7 +649,7 @@ public class DnDCharacterPDFGenerator {
 
 //      ________________Inspiration_____________
 
-        Paragraph personalityTrait = new Paragraph(dnDCharacter.getPersonalityTrait()).setFont(font).setFontSize(9);
+        Paragraph personalityTrait = new Paragraph(dnDCharacter.getPersonalityTrait()).setFont(font).setFontSize(8);
         Rectangle personalityTraitRect = new Rectangle(418, 595, 160, 60);
         new Canvas(new PdfCanvas(pdfDoc.getPage(1)), pdfDoc, personalityTraitRect)
                 .add(personalityTrait);
@@ -553,12 +659,12 @@ public class DnDCharacterPDFGenerator {
         new Canvas(new PdfCanvas(pdfDoc.getPage(1)), pdfDoc, idealRect)
                 .add(ideal);
 
-        Paragraph bond = new Paragraph(dnDCharacter.getBond()).setFont(font).setFontSize(9);
-        Rectangle bondRect = new Rectangle(418, 482, 160, 50);
+        Paragraph bond = new Paragraph(dnDCharacter.getBond()).setFont(font).setFontSize(8);
+        Rectangle bondRect = new Rectangle(418, 477, 160, 55);
         new Canvas(new PdfCanvas(pdfDoc.getPage(1)), pdfDoc, bondRect)
                 .add(bond);
 
-        Paragraph flaw = new Paragraph(dnDCharacter.getFlaw()).setFont(font).setFontSize(9);
+        Paragraph flaw = new Paragraph(dnDCharacter.getFlaw()).setFont(font).setFontSize(8);
         Rectangle flawRect = new Rectangle(418, 430, 160, 45);
         new Canvas(new PdfCanvas(pdfDoc.getPage(1)), pdfDoc, flawRect)
                 .add(flaw);
@@ -578,7 +684,7 @@ public class DnDCharacterPDFGenerator {
                 equipment += e.getName() + ", ";
             }
         }
-        if (equipment.length() > 1) equipment = equipment.substring(0, equipment.length()-1);
+        if (equipment.length() > 1) equipment = equipment.substring(0, equipment.length()-2);
 
 
         Paragraph equipmentList = new Paragraph(equipment).setFont(font).setFontSize(8);
@@ -590,6 +696,122 @@ public class DnDCharacterPDFGenerator {
         Rectangle goldPiecesRect = new Rectangle(237, 100, 15, 15);
         new Canvas(new PdfCanvas(pdfDoc.getPage(1)), pdfDoc, goldPiecesRect)
                 .add(goldPieces);
+
+//      ________________Armor Class, Hit Points and Other_____________
+
+        Paragraph armorClass = new Paragraph(dnDCharacter.getArmorClass() + "").setFont(font).setFontSize(18).setTextAlignment(TextAlignment.CENTER);
+        Rectangle armorClassRect = new Rectangle(235, 625, 25, 25);
+        new Canvas(new PdfCanvas(pdfDoc.getPage(1)), pdfDoc, armorClassRect)
+                .add(armorClass);
+
+        Paragraph initiative = new Paragraph(dnDCharacter.getDexterityModifier() + "").setFont(font).setFontSize(18).setTextAlignment(TextAlignment.CENTER);
+        Rectangle initiativeRect = new Rectangle(291, 625, 25, 25);
+        new Canvas(new PdfCanvas(pdfDoc.getPage(1)), pdfDoc, initiativeRect)
+                .add(initiative);
+
+        Paragraph speed = new Paragraph(dnDCharacter.getSpeed() + "").setFont(font).setFontSize(18).setTextAlignment(TextAlignment.CENTER);
+        Rectangle speedRect = new Rectangle(342, 625, 40, 25);
+        new Canvas(new PdfCanvas(pdfDoc.getPage(1)), pdfDoc, speedRect)
+                .add(speed);
+
+        Paragraph maxHitPoints = new Paragraph(dnDCharacter.getConstitutionModifier() + 8 + "").setFont(font).setFontSize(9).setTextAlignment(TextAlignment.CENTER);
+        Rectangle maxHitPointsRect = new Rectangle(291, 583, 25, 15);
+        new Canvas(new PdfCanvas(pdfDoc.getPage(1)), pdfDoc, maxHitPointsRect)
+                .add(maxHitPoints);
+
+        Paragraph hitDice = new Paragraph(dnDCharacter.getCharacterClass().getHitDice()).setFont(font).setFontSize(9).setTextAlignment(TextAlignment.CENTER);
+        Rectangle hitDiceRect = new Rectangle(250, 462, 30, 15);
+        new Canvas(new PdfCanvas(pdfDoc.getPage(1)), pdfDoc, hitDiceRect)
+                .add(hitDice);
+
+
+//      ________________Attacks & Spellcasting_____________
+
+        List<Equipment> weaponsEq = dnDCharacter.getEquipment().stream().filter(eq -> eq.getType().equals("Weapon")).collect(Collectors.toList());
+        for (int i = 0; i < weaponsEq.size(); i++) {
+
+            Paragraph weaponAttack = new Paragraph(weaponsEq.get(i).getName()).setFont(font).setFontSize(8);
+            Rectangle weaponAttackRect = new Rectangle(225, 385 - (21*i), 63, 15);
+            new Canvas(new PdfCanvas(pdfDoc.getPage(1)), pdfDoc, weaponAttackRect)
+                    .add(weaponAttack);
+
+//            int profAttBonus = profs.contains(weaponsEq.get(i)) ? dnDCharacter.getProficiencyBonus() : 0;
+
+            int attackBonus = weaponsEq.get(i).getSubtype().contains("Melee") ? dnDCharacter.getStrengthModifier() : dnDCharacter.getDexterityModifier();
+
+            Paragraph weaponAttackBonus = new Paragraph(attackBonus + " + __").setFont(font).setFontSize(8);
+            Rectangle weaponAttackBonusRect = new Rectangle(295, 385 - (21*i), 30, 15);
+            new Canvas(new PdfCanvas(pdfDoc.getPage(1)), pdfDoc, weaponAttackBonusRect)
+                    .add(weaponAttackBonus);
+
+            String damageBonus = weaponsEq.get(i).getSubtype().contains("Melee") ? dnDCharacter.getStrengthModifier() + " (S)" : dnDCharacter.getDexterityModifier() + " (D)";
+
+            Paragraph weaponDamage = new Paragraph(weaponsEq.get(i).getDamage() + " + " + damageBonus).setFont(font).setFontSize(8);
+            Rectangle weaponDamageRect = new Rectangle(330, 385 - (21*i), 55, 15);
+            new Canvas(new PdfCanvas(pdfDoc.getPage(1)), pdfDoc, weaponDamageRect)
+                    .add(weaponDamage);
+        }
+
+
+//      ________________Page2_____________
+
+
+//      characterName
+        Rectangle characterNameRect2 = new Rectangle(55, 699, 180, 35);
+        new Canvas(new PdfCanvas(pdfDoc.getPage(2)), pdfDoc, characterNameRect2)
+                .add(characterName);
+
+        Paragraph age = new Paragraph(dnDCharacter.getAge() + "").setFont(font).setFontSize(13);
+        Rectangle ageRect = new Rectangle(270, 721, 100, 25);
+        new Canvas(new PdfCanvas(pdfDoc.getPage(2)), pdfDoc, ageRect)
+                .add(age);
+
+        Paragraph height = new Paragraph(dnDCharacter.getHeight() + "cm").setFont(font).setFontSize(13);
+        Rectangle heightRect = new Rectangle(380, 721, 90, 25);
+        new Canvas(new PdfCanvas(pdfDoc.getPage(2)), pdfDoc, heightRect)
+                .add(height);
+
+        Paragraph weight = new Paragraph(dnDCharacter.getWeight() + "kg").setFont(font).setFontSize(13);
+        Rectangle weightRect = new Rectangle(480, 721, 90, 25);
+        new Canvas(new PdfCanvas(pdfDoc.getPage(2)), pdfDoc, weightRect)
+                .add(weight);
+
+        Paragraph eyes = new Paragraph(dnDCharacter.getEyes()).setFont(font).setFontSize(13);
+        Rectangle eyesRect = new Rectangle(270, 695, 100, 25);
+        new Canvas(new PdfCanvas(pdfDoc.getPage(2)), pdfDoc, eyesRect)
+                .add(eyes);
+
+        Paragraph skin = new Paragraph(dnDCharacter.getSkin()).setFont(font).setFontSize(13);
+        Rectangle skinRect = new Rectangle(380, 695, 90, 25);
+        new Canvas(new PdfCanvas(pdfDoc.getPage(2)), pdfDoc, skinRect)
+                .add(skin);
+
+        Paragraph hair = new Paragraph(dnDCharacter.getHair()).setFont(font).setFontSize(13);
+        Rectangle hairRect = new Rectangle(480, 695, 90, 25);
+        new Canvas(new PdfCanvas(pdfDoc.getPage(2)), pdfDoc, hairRect)
+                .add(hair);
+
+
+        Paragraph backstory = new Paragraph(dnDCharacter.getCharacterBackstory()).setFont(font).setFontSize(8);
+        Rectangle backstoryRect = new Rectangle(35, 30, 165, 380);
+        new Canvas(new PdfCanvas(pdfDoc.getPage(2)), pdfDoc, backstoryRect)
+                .add(backstory);
+
+        Paragraph alliesAndOrg = new Paragraph(dnDCharacter.getAlliesAndOrganisations()).setFont(font).setFontSize(8);
+        Rectangle alliesAndOrgRect = new Rectangle(223, 435, 180, 230);
+        new Canvas(new PdfCanvas(pdfDoc.getPage(2)), pdfDoc, alliesAndOrgRect)
+                .add(alliesAndOrg);
+
+        Paragraph addFeaturesTraits = new Paragraph(dnDCharacter.getAdditionalFeaturesAndTraits()).setFont(font).setFontSize(8);
+        Rectangle addFeaturesTraitsRect = new Rectangle(223, 205, 354, 215);
+        new Canvas(new PdfCanvas(pdfDoc.getPage(2)), pdfDoc, addFeaturesTraitsRect)
+                .add(addFeaturesTraits);
+
+        Paragraph treasure = new Paragraph(dnDCharacter.getTreasure()).setFont(font).setFontSize(8);
+        Rectangle treasureRect = new Rectangle(223, 30, 354, 160);
+        new Canvas(new PdfCanvas(pdfDoc.getPage(2)), pdfDoc, treasureRect)
+                .add(treasure);
+
 
 
         pdfDoc.close();

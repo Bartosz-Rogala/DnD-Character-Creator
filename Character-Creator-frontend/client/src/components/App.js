@@ -2,6 +2,7 @@ import React from "react";
 import MenuComponent from './MenuComponent';
 import MainPageComponent from './MainPageComponent';
 import LearnMoreComponent from './LearnMoreComponent';
+import ViewCharactersComponent from "./ViewCharactersComponent";
 import CreateCharacterComponent from './CreateCharacterWizzard/CreateCharacterComponent';
 import SuccessfulCreateComponent from './ViewCharacter/SuccessfulCreateComponent';
 import CharacterDetailsComponent from './ViewCharacter/CharacterDetailsComponent';
@@ -51,6 +52,8 @@ class App extends React.Component {
                             <Route path="/view_stats/bonds" exact component={BondListComponent}></Route>
 
                             <Route path="/successful_create/:id" exact component={SuccessfulCreateComponent}></Route>
+
+                            <Route path="/view_characters" exact component={ViewCharactersComponent}></Route>
 
                             <Route path="/view_character/:id" exact component={CharacterDetailsComponent}></Route>
 

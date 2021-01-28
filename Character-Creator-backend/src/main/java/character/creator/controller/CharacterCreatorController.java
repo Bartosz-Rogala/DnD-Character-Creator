@@ -17,7 +17,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @CrossOrigin
 @RestController
@@ -150,13 +154,31 @@ public class CharacterCreatorController {
         return dnDCharacterRepository.save(character);
     }
 
+//    create character rest api
+    @GetMapping("/character/created")
+    public List<DnDCharacter> getAllCharacters() {
+        return StreamSupport.stream(dnDCharacterRepository.findAll().spliterator(), false).collect(Collectors.toList());
+    }
+
+//    delete character by id
+    @DeleteMapping("/character/created/{id}")
+    public ResponseEntity<Map<String, Boolean>> deleteCharacter(@PathVariable Long id) {
+        DnDCharacter character = dnDCharacterRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("ToDo with id : " + id + " does not exist"));
+
+        dnDCharacterRepository.delete(character);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("deleted", Boolean.TRUE);
+        return ResponseEntity.ok(response);
+    }
+
 //    get character by id rest api
     @GetMapping("/character/created/{id}")
-        public ResponseEntity<DnDCharacter> getCharacterById(@PathVariable Long id) {
-        DnDCharacter character = dnDCharacterRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("character with id : " + id + " does not exist"));
+    public ResponseEntity<DnDCharacter> getCharacterById(@PathVariable Long id) {
+    DnDCharacter character = dnDCharacterRepository.findById(id)
+            .orElseThrow(() -> new ResourceNotFoundException("character with id : " + id + " does not exist"));
 
-        return ResponseEntity.ok(character);
+    return ResponseEntity.ok(character);
     }
 
 //    get character for pdf export

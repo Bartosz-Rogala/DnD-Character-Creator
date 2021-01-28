@@ -22,7 +22,9 @@ public class CharacterClass {
     private int hitPoints;
     private int maxSkills;
     private String hitDice;
-    private String savingThrow;
+
+    @ManyToMany(targetEntity = SavingThrow.class)
+    private List<SavingThrow> SavingThrows;
 
     @ManyToMany(targetEntity = Proficiency.class)
     private List<Proficiency> otherProficiencies;

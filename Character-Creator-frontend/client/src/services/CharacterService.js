@@ -14,6 +14,16 @@ class CharacterService {
         return axios.get(CHARACTER_API_BASE_URL + '/created/' + characterId);
     }
 
+    // Delete character by Id
+    deleteCharacterById(characterId) {
+        return axios.delete(CHARACTER_API_BASE_URL + '/created/' + characterId);
+    }
+
+    // Get all characters
+    getAllCharacters() {
+        return axios.get(CHARACTER_API_BASE_URL + '/created');
+    }
+
     // Get character for pdf export
     getExportCharacterById(characterId) {
         return axios.get(CHARACTER_API_BASE_URL + "/export", {

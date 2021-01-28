@@ -19,8 +19,11 @@ class MenuComponent extends Component {
                 <Link to="/create_character" className="item">
                     Create Character
                 </Link>
+                <Link to="/view_characters" className="item">
+                    View Created Characters
+                </Link>
                 <Link to="/view_stats" className="item">
-                    View all stats
+                    View All Stats
                 </Link>
             </div>
 
