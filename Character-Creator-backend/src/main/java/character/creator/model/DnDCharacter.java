@@ -129,7 +129,7 @@ public class DnDCharacter {
 
          this.armorClass = mainArmor + shieldArmor;
 
-         if (characterSubrace.getSpeed() != null) {
+         if (characterSubrace != null) {
              this.speed = characterSubrace.getSpeed();
          } else {
              this.speed = characterRace.getSpeed();

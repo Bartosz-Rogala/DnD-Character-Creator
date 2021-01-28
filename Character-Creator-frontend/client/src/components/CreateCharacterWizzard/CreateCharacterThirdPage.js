@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import validate from './validate';
 import OtherStatsService from '../../services/OtherStatsService';
-// import { Multiselect } from "multiselect-react-dropdown";
 import Multiselect from 'react-widgets/lib/Multiselect';
 import 'react-widgets/dist/css/react-widgets.css';
 
@@ -192,5 +191,5 @@ export default reduxForm({
     form: 'createCharacter',
     destroyOnUnmount: false,
     forceUnregisterOnUnmount: true,
-    validate
+    validate 
   })(CreateCharacterThirdPage)

@@ -32,7 +32,7 @@ class CreateCharacterComponent extends Component {
     toSecondPage(formValues) {
         this.setState({ page: this.state.page + 1 })
         this.setState({ race: JSON.parse(formValues.race) })
-        if(formValues.subrace) {
+        if(formValues.subrace && formValues.subrace !== '-') {
             this.setState({ subrace: JSON.parse(formValues.subrace) })
         }
         this.setState({ class: JSON.parse(formValues.class) })

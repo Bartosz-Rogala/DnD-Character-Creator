@@ -590,10 +590,22 @@ public class DnDCharacterPDFGenerator {
         new Canvas(new PdfCanvas(pdfDoc.getPage(1)), pdfDoc, languagesRect)
                 .add(languages);
 
+
         List<Proficiency> profs = Stream.of(dnDCharacter.getCharacterClass().getOtherProficiencies(),
-                dnDCharacter.getCharacterRace().getOtherProficiencies(),
-                dnDCharacter.getCharacterSubrace().getOtherProficiencies()).flatMap(Collection::stream)
+                dnDCharacter.getCharacterRace().getOtherProficiencies()
+        ).flatMap(Collection::stream)
                 .collect(Collectors.toList());
+
+        if (dnDCharacter.getCharacterSubrace() != null) {
+            profs = Stream.of(dnDCharacter.getCharacterClass().getOtherProficiencies(),
+                    dnDCharacter.getCharacterRace().getOtherProficiencies(),
+                    dnDCharacter.getCharacterSubrace().getOtherProficiencies()
+            ).flatMap(Collection::stream)
+                    .collect(Collectors.toList());
+        }
+
+
+
 
 
         String weaponsProf = "";
@@ -776,38 +788,38 @@ public class DnDCharacterPDFGenerator {
         new Canvas(new PdfCanvas(pdfDoc.getPage(2)), pdfDoc, weightRect)
                 .add(weight);
 
-        Paragraph eyes = new Paragraph(dnDCharacter.getEyes()).setFont(font).setFontSize(13);
+        Paragraph eyes = new Paragraph(dnDCharacter.getEyes() + "").setFont(font).setFontSize(13);
         Rectangle eyesRect = new Rectangle(270, 695, 100, 25);
         new Canvas(new PdfCanvas(pdfDoc.getPage(2)), pdfDoc, eyesRect)
                 .add(eyes);
 
-        Paragraph skin = new Paragraph(dnDCharacter.getSkin()).setFont(font).setFontSize(13);
+        Paragraph skin = new Paragraph(dnDCharacter.getSkin() + "").setFont(font).setFontSize(13);
         Rectangle skinRect = new Rectangle(380, 695, 90, 25);
         new Canvas(new PdfCanvas(pdfDoc.getPage(2)), pdfDoc, skinRect)
                 .add(skin);
 
-        Paragraph hair = new Paragraph(dnDCharacter.getHair()).setFont(font).setFontSize(13);
+        Paragraph hair = new Paragraph(dnDCharacter.getHair() + "").setFont(font).setFontSize(13);
         Rectangle hairRect = new Rectangle(480, 695, 90, 25);
         new Canvas(new PdfCanvas(pdfDoc.getPage(2)), pdfDoc, hairRect)
                 .add(hair);
 
 
-        Paragraph backstory = new Paragraph(dnDCharacter.getCharacterBackstory()).setFont(font).setFontSize(8);
+        Paragraph backstory = new Paragraph(dnDCharacter.getCharacterBackstory() + "").setFont(font).setFontSize(8);
         Rectangle backstoryRect = new Rectangle(35, 30, 165, 380);
         new Canvas(new PdfCanvas(pdfDoc.getPage(2)), pdfDoc, backstoryRect)
                 .add(backstory);
 
-        Paragraph alliesAndOrg = new Paragraph(dnDCharacter.getAlliesAndOrganisations()).setFont(font).setFontSize(8);
+        Paragraph alliesAndOrg = new Paragraph(dnDCharacter.getAlliesAndOrganisations() + "").setFont(font).setFontSize(8);
         Rectangle alliesAndOrgRect = new Rectangle(223, 435, 180, 230);
         new Canvas(new PdfCanvas(pdfDoc.getPage(2)), pdfDoc, alliesAndOrgRect)
                 .add(alliesAndOrg);
 
-        Paragraph addFeaturesTraits = new Paragraph(dnDCharacter.getAdditionalFeaturesAndTraits()).setFont(font).setFontSize(8);
+        Paragraph addFeaturesTraits = new Paragraph(dnDCharacter.getAdditionalFeaturesAndTraits() + "").setFont(font).setFontSize(8);
         Rectangle addFeaturesTraitsRect = new Rectangle(223, 205, 354, 215);
         new Canvas(new PdfCanvas(pdfDoc.getPage(2)), pdfDoc, addFeaturesTraitsRect)
                 .add(addFeaturesTraits);
 
-        Paragraph treasure = new Paragraph(dnDCharacter.getTreasure()).setFont(font).setFontSize(8);
+        Paragraph treasure = new Paragraph(dnDCharacter.getTreasure() + "").setFont(font).setFontSize(8);
         Rectangle treasureRect = new Rectangle(223, 30, 354, 160);
         new Canvas(new PdfCanvas(pdfDoc.getPage(2)), pdfDoc, treasureRect)
                 .add(treasure);
