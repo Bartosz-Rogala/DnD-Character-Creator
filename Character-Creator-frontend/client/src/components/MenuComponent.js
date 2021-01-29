@@ -47,7 +47,7 @@ class MenuComponent extends Component {
                     )}
 
                     {this.props.user ? ( 
-                        <div className="ui menu">
+                        <div className="ui dnd menu">
                         <Link to={"/profile"} className="item">
                             {this.props.user.username}
                         </Link>

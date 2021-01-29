@@ -15,6 +15,7 @@ Fontend-side tools and technologies used:
 Server-side technologies used:
 - Spring Boot
 - SpringData JPA (Hibernate)
+- Spring Security (JWT)
 - Maven
 - MySQL Database
 - iText PDF
@@ -25,6 +26,5 @@ It also allows user to view all possible stats that character can have
 
 
 To be developed:
-- user account (Spring Security)
 - upgrade created characters
 - upload image of a character

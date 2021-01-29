@@ -44,6 +44,7 @@ class LearnMoreComponent extends Component {
                         <div className="ui middle aligned bulleted animated list">
                         <div className="item"> Spring Boot </div>
                         <div className="item"> SpringData JPA (Hibernate) </div>
+                        <div className="item"> SpringSecurity (JWT) </div>
                         <div className="item"> Maven </div>
                         <div className="item"> MySQL Database </div>
                         <div className="item"> iText PDF </div>
@@ -60,7 +61,6 @@ class LearnMoreComponent extends Component {
                             To be developed:
                         </div>
                         <ul className="list">
-                            <li> user account (Spring Security) </li>
                             <li> upgrade created characters </li>
                             <li> upload image of a character </li>
                         </ul>

@@ -102,18 +102,19 @@ const Register = (props) => {
   };
 
   return (
-    <div className="col-md-12">
+    <div className="ui form segment error">
       <div className="card card-container">
         <img
+
           src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
           alt="profile-img"
-          className="profile-img-card"
+          className="ui medium centered circular image"
         />
 
-        <Form onSubmit={handleRegister} ref={form}>
+        <Form  onSubmit={handleRegister} ref={form}>
           {!successful && (
             <div>
-              <div className="form-group">
+              <div className="field">
                 <label htmlFor="username">Username</label>
                 <Input
                   type="text"
@@ -125,7 +126,7 @@ const Register = (props) => {
                 />
               </div>
 
-              <div className="form-group">
+              <div className="field">
                 <label htmlFor="email">Email</label>
                 <Input
                   type="text"
@@ -137,7 +138,7 @@ const Register = (props) => {
                 />
               </div>
 
-              <div className="form-group">
+              <div className="field">
                 <label htmlFor="password">Password</label>
                 <Input
                   type="password"
@@ -150,7 +151,7 @@ const Register = (props) => {
               </div>
 
               <div className="form-group">
-                <button className="btn btn-primary btn-block" onClick={handleRegister}>Sign Up</button>
+                <button className="ui button DnDpositive" onClick={handleRegister}>Sign Up</button>
               </div>
             </div>
           )}
