@@ -1,20 +1,29 @@
-body > #root > div {
-  height: 100vh;
-}
-
 .mainpage {
+    height: 100vh;
+    overflow-y: auto;
     background-image: url(./resources/dndtiles.jpg);
-    
 }
 
 .dnd {
     opacity: 0.9;
     background-color: #e7e6e0 !important;
+    transition-duration: 1s;
+    -webkit-animation: fadein 1300ms;
 }
+
+.dnd:hover {
+    opacity: 0.85;
+    background-color: #e7e6e0 !important;
+    transition-duration: 500ms;
+}
+
+
 
 .form {
     opacity: 0.9;
     background-color: #e7e6e0 !important;
+
+    -webkit-animation: fadein 1000ms;
 }
 
 .left {
@@ -28,8 +37,50 @@ body > #root > div {
     opacity: 0.9;
 }
 
+.DnDnegative:hover {
+    background-color: #640101 !important;
+    color: #e7e6e0 !important;
+    opacity: 0.85;
+}
+
 .DnDpositive {
     background-color: #178302 !important;
     color: #e7e6e0 !important;
     opacity: 0.95;
+}
+
+.DnDpositive:hover {
+    background-color: #105c00 !important;
+    color: #e7e6e0 !important;
+    opacity: 0.95;
+}
+
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 0.9; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 0.9; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 0.9; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 0.9; }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 0.9; }
 }

@@ -1,5 +1,6 @@
-DnD character creator is a hobby project created by Bartosz Rogala. It is still in development.
-if you have any suggestions or questions, please contact me: bartosz.j.rogala@gmail.com
+DnD character creator is an application for creatind DnD character and exporting pdf with character information.
+It is created by Bartosz Rogala.
+If you have any suggestions or questions, please contact me: bartosz.j.rogala@gmail.com
 
 DnD character creator is a fullstack application:
 
@@ -16,13 +17,14 @@ Server-side technologies used:
 - SpringData JPA (Hibernate)
 - Maven
 - MySQL Database
+- iText PDF
 
 
-DnD character creator allows user to quickly and easily create DnD character and generate character sheet. It also allows user to view all possible stats that character can have
+DnD character creator allows user to quickly and easily create DnD character and generate character sheet. 
+It also allows user to view all possible stats that character can have
 
 
 To be developed:
-- finish character creation
-- user account
-- view already created characters
+- user account (Spring Security)
 - upgrade created characters
+- upload image of a character
