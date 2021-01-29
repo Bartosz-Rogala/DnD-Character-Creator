@@ -1,4 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import { Router, Route, Switch } from 'react-router-dom';
+
+import '../DnD.css';
+
 import MenuComponent from './MenuComponent';
 import MainPageComponent from './MainPageComponent';
 import LearnMoreComponent from './LearnMoreComponent';
@@ -7,7 +12,7 @@ import CreateCharacterComponent from './CreateCharacterWizzard/CreateCharacterCo
 import SuccessfulCreateComponent from './ViewCharacter/SuccessfulCreateComponent';
 import CharacterDetailsComponent from './ViewCharacter/CharacterDetailsComponent';
 
-
+import ViewStatsComponent from "./OtherStats/ViewStatsComponent";
 import ProficienciesListComponent from './OtherStats/ProficienciesListComponent';
 import PersonalityTraitsListComponent from './OtherStats/PersonalityTraitsListComponent';
 import LanguagesListComponent from './OtherStats/LanguagesListComponent';
@@ -20,20 +25,44 @@ import FlawListComponent from './OtherStats/FlawListComponent';
 import EquipmentListComponent from './OtherStats/EquipmentListComponent';
 import BondListComponent from './OtherStats/BondListComponent';
 
+import Login from "../components/Security/Login";
+import Register from "../components/Security/Register";
+import Profile from "../components/Security/Profile";
+import BoardUser from "../components/Security/BoardUser";
+import BoardModerator from "../components/Security/BoardModerator";
+import BoardAdmin from "../components/Security/BoardAdmin";
 
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import ViewStatsComponent from "./OtherStats/ViewStatsComponent";
+import { history } from "../helpers/history";
+import AuthService from "../services/AuthService";
 
-// import dndtile from '../resources/dndtiles.jpg';
-import '../DnD.css';
+const App = () => {
+    const [showModeratorBoard, setShowModeratorBoard] = useState(false);
+    const [showAdminBoard, setShowAdminBoard] = useState(false);
+    const [currentUser, setCurrentUser] = useState(undefined);
 
-class App extends React.Component {
+    useEffect(() => {
+        const user = AuthService.getCurrentUser();
 
-    render() {
+        if (user) {
+        setCurrentUser(user);
+        setShowModeratorBoard(user.roles.includes("ROLE_MODERATOR"));
+        setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
+        }
+    }, []);
+
+    const logOut = () => {
+        AuthService.logout();
+        window.location.reload();
+    };
+   
+
+    
+        
+
         return (
             <div className="mainpage" >
-                <BrowserRouter>
-                    <MenuComponent />
+                <Router history={history}>
+                    <MenuComponent logOut={logOut} user={currentUser} modBoard={showModeratorBoard} admBoard={showAdminBoard} />
                     <div className="ui container">
                         <Switch>
                             <Route path="/" exact component={MainPageComponent}></Route>
@@ -60,13 +89,26 @@ class App extends React.Component {
 
                             <Route path="/view_character/:id" exact component={CharacterDetailsComponent}></Route>
 
+                            <Route path="/login" exact component={Login}></Route>
+                            <Route exact path="/register" component={Register} ></Route>
+                            <Route exact path="/profile" component={Profile} ></Route>
+                            <Route path="/user" component={BoardUser} ></Route>
+                            <Route path="/mod" component={BoardModerator} ></Route>
+                            <Route path="/admin" component={BoardAdmin} ></Route>
                         </Switch>
                     </div>
-                </BrowserRouter>
+                </Router>
             </div>
             
         );
-    }
+    
 }
 
-export default App;
+function mapStateToProps(state) {
+    const { user } = state.auth;
+    return {
+      user,
+    };
+  }
+
+export default connect(mapStateToProps)(App);
