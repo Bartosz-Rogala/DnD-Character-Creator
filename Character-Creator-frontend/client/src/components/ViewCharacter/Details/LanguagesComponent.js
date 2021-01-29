@@ -5,7 +5,7 @@ const LangaugesComponent = ({info}) => {
 
 
     return (
-        <div className="ui raised very padded text segment">
+        <div className="dnd ui raised very padded text segment">
             <h4>Languages:</h4>
             {/* {!info.characterRace.languages ?
                 <div>Loading...</div>

@@ -3,7 +3,7 @@ import React from 'react';
 const AbilitiesComponent = ({info}) => {
 
     return (
-        <div className="ui raised very padded text segment">
+        <div className="dnd ui raised very padded text segment">
             <h4>Abilites:</h4>
             <table className="ui very basic collapsing celled table">
                 <thead>

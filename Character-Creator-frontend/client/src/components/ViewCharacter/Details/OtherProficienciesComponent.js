@@ -16,14 +16,14 @@ const OtherProficienciesComponent = ({info}) => {
  
     if (!info) {
         return (
-            <div className="ui raised very padded text segment">
+            <div className="dnd ui raised very padded text segment">
             <h4>Other Proficiencies:</h4>
             <div>Loading...</div>
             </div>
         );
     } else {
         return (
-            <div className="ui raised very padded text segment">
+            <div className="dnd ui raised very padded text segment">
                 <h4>Other Proficiencies:</h4>
 
                 <table className="ui very basic collapsing celled table">

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CharacterService from '../../services/CharacterService';
+import { GeneratePdf } from './GeneratePdf';
 
 import AbilitiesComponent from './Details/AbilitiesComponent';
 import BasicInformation from './Details/BasicInformationComponent';
@@ -13,6 +14,8 @@ import EquipmentComponent from './Details/EquipmentComponent';
 import SkillsComponent from './Details/SkillsComponent';
 import LangaugesComponent from './Details/LanguagesComponent';
 import OtherProficienciesComponent from './Details/OtherProficienciesComponent';
+import { Link } from 'react-router-dom';
+
 
 
 class CharacterDetailsComponent extends Component {
@@ -30,22 +33,11 @@ class CharacterDetailsComponent extends Component {
         }
     }
 
-    generatePdf(id) {
-
-        CharacterService.getExportCharacterById(id)
-        .then(response => {
-            //Create a Blob from the PDF Stream
-                const file = new Blob(
-                  [response.data],
-                  {type: 'application/pdf'});
-            //Build a URL from the file
-                const fileURL = URL.createObjectURL(file);
-            //Open the URL on new Window
-                window.open(fileURL);
-            })
-            .catch(error => {
-                console.log(error);
-            });
+    deleteCharacter(id) {
+        //  rest api call
+        CharacterService.deleteCharacterById(id).then( res => {
+            this.props.history.push("/");
+        })
     }
 
     componentDidMount() {
@@ -64,7 +56,40 @@ class CharacterDetailsComponent extends Component {
             <div>
                 <div className="ui three column doubling stackable grid container">
                     <div className="column">
-                        <div className="ui raised very padded text segment">
+                    <div className="dnd ui raised very padded text segment">
+                            <h4>Actions</h4>
+                            <table className="ui very basic collapsing celled table">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <button className="ui DnDpositive button" onClick={() => GeneratePdf(this.state.id)}>
+                                                Generate Pdf
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <button className="ui DnDnegative button" onClick={() => this.deleteCharacter(this.state.id)}>
+                                                Delete
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <Link to="/view_characters">
+                                                    <button className="ui secondary button">
+                                                        Back
+                                                    </button>
+                                            </Link>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                            
+                            
+                        </div>
+                        <div className="dnd ui raised very padded text segment">
                             Character Appearance (in the future)
                         </div>
                         <AbilitiesComponent info={this.state.character} />
@@ -87,9 +112,7 @@ class CharacterDetailsComponent extends Component {
                 </div>
                 <br></br>
                 
-                <button style={{marginLeft: "10px"}} className="ui button" onClick={() => this.generatePdf(this.state.id)}>
-                    Generate pdf
-                </button>
+                
                 
             </div>
         );

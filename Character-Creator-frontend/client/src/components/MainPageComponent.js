@@ -14,6 +14,9 @@ class MainPageComponent extends Component {
                     <h2>Welcome to DnD Character Creator!</h2>
 
                     This application will help you create your very own Dungeons and Dragon character
+                    <br></br>
+                    <br></br>
+                    PDF download available :)
                     
                     <br></br>
                     <br></br>

@@ -29,7 +29,7 @@ class ViewCharactersComponent extends Component {
     render() {
         return (
             <div>
-            <h2 className="ui center aligned header">Characters</h2>
+            <h2 className="ui dnd message center aligned header">Characters</h2>
             <table className="ui celled table dnd">
                 <thead>
                     <tr>

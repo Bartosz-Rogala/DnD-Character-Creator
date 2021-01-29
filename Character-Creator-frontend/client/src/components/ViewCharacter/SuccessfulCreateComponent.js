@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CharacterService from '../../services/CharacterService';
 import { Link } from 'react-router-dom';
+import { GeneratePdf } from "./GeneratePdf";
 
 class SuccessfulCreateComponent extends Component {
     constructor(props) {
@@ -25,7 +26,8 @@ class SuccessfulCreateComponent extends Component {
     
     render() {
         return (
-            <div>
+            <div className="dnd">
+                <br></br>
                 <h2 className="ui center aligned icon header">
                     <i className="check circle outline users icon"></i>
                     Congratulations!
@@ -36,16 +38,16 @@ class SuccessfulCreateComponent extends Component {
 
                 <div className="ui center aligned header">
                     <Link to={this.viewCharacter}>
-                    <button className="ui positive button">
+                    <button className="ui DnDpositive button">
                         View Character
                     </button>
                     </Link>
                     
-                    <button style={{marginLeft: "10px"}} className="ui button">
+                    <button style={{marginLeft: "10px"}} className="ui secondary button" onClick={() => GeneratePdf(this.state.id)}>
                         Generate pdf
                     </button>
-                    
                 </div>
+                <br></br>
             </div>
         );
     }

@@ -5,7 +5,7 @@ const SkillsComponent = ({info}) => {
 
 
     return (
-        <div className="ui raised very padded text segment">
+        <div className="dnd ui raised very padded text segment">
             <h4>Skills:</h4>
             <table className="ui very basic collapsing celled table">
                 <thead>
