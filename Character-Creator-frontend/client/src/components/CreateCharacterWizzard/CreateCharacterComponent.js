@@ -76,7 +76,7 @@ class CreateCharacterComponent extends Component {
             wisdom: formValues.wisdom,
             };
 
-            if(formValues.subrace) {
+            if(formValues.subrace && formValues.subrace !== '-') {
                 character['characterSubrace'] = JSON.parse(formValues.subrace)
             }
 
