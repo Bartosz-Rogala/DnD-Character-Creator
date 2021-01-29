@@ -1,3 +1,5 @@
+# DnD Character Creator
+
 DnD character creator is an application for creatind DnD character and exporting pdf with character information.
 It is created by Bartosz Rogala.
 If you have any suggestions or questions, please contact me: bartosz.j.rogala@gmail.com
@@ -19,6 +21,10 @@ Server-side technologies used:
 - Maven
 - MySQL Database
 - iText PDF
+
+## Example
+
+![](example.png)
 
 
 DnD character creator allows user to quickly and easily create DnD character and generate character sheet. 
